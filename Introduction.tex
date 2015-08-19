@@ -20,7 +20,11 @@
         \end{column}
 
         \begin{column}{0.4\textwidth}
-            \includegraphics[width=0.9\columnwidth]{Introduction/sticker.jpg}
+            \begin{flushleft}
+                \newlength{\stickerwidth}
+                \setlength{\stickerwidth}{\columnwidth - 1em}
+                \includegraphics[width=\stickerwidth]{Introduction/sticker.jpg}
+            \end{flushleft}
         \end{column}
     \end{columns}
 \end{frame}
