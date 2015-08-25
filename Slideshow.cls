@@ -10,11 +10,14 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{Slideshow}[2015/08/24 Slideshow]
 
+\RequirePackage[chinese]{babel}
 \RequirePackage{calc}
 \RequirePackage[no-math]{fontspec}
 \RequirePackage{xeCJK}
 
 \LoadClass{beamer}
+
+\deftranslation[to=chinese]{Definition}{定義}
 
 \setCJKmainfont[AutoFakeBold]{WenQuanYi Micro Hei}
 \hypersetup{colorlinks, linkcolor=}

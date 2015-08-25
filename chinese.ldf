@@ -1,0 +1,54 @@
+% Copyright (C) 2015 Chen-Pang He <http://jdh8.org/>
+%
+% This file may be distributed and/or modified under
+%
+% 1. LaTeX Project Public License
+% 2. GNU Public License
+%
+% See the files COPYING.* for more details.
+
+\ProvidesLanguage{chinese}[2015/08/25 Chen-Pang He <http://jdh8.org/>]
+
+\LdfInit\CurrentOption{date\CurrentOption}
+
+\ifx\undefined\l@chinese
+    \@nopatterns{Chinese}
+    \adddialect\l@chinese0
+\fi
+
+\providehyphenmins{\CurrentOption}{\tw@\thr@@}
+
+\@namedef{captions\CurrentOption}{
+    \def\prefacename{前言}
+    \def\refname{參考資料}
+    \def\abstractname{摘要}
+    \def\bibname{參考書目}
+    \def\chaptername{章}
+    \def\appendixname{附錄}
+    \def\contentsname{目錄}
+    \def\listfigurename{圖目錄}
+    \def\listtablename{表目錄}
+    \def\indexname{索引}
+    \def\figurename{圖}
+    \def\tablename{表}
+    \def\partname{部份}
+    \def\enclname{附件}
+    \def\ccname{副本}
+    \def\headtoname{致}
+    \def\pagename{頁}
+    \def\seename{參見}
+    \def\alsoname{參見}
+    \def\proofname{證明}
+    \def\glossaryname{詞彙表}
+}
+
+\@namedef{date\CurrentOption}{
+    \def\today{\number\year~年 \number\month~月 \number\day~日}
+}
+
+\@namedef{extras\CurrentOption}{}
+\@namedef{noextras\CurrentOption}{}
+
+\ldf@finish\CurrentOption
+\endinput
+% vim: filetype=tex
