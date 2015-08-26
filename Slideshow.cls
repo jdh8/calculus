@@ -18,6 +18,7 @@
 \LoadClass{beamer}
 
 \deftranslation[to=chinese]{Definition}{定義}
+\deftranslation[to=chinese]{Example}{範例}
 
 \setCJKmainfont[AutoFakeBold]{WenQuanYi Micro Hei}
 \hypersetup{colorlinks, linkcolor=}
