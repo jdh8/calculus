@@ -15,6 +15,7 @@
 \maketitle
 
 \section{前言}
+\subsection{關於}
 \begin{frame}{關於我}
     \begin{columns}[onlytextwidth]
         \begin{column}{0.6\textwidth}
@@ -70,6 +71,7 @@
     \end{figure}
 \end{frame}
 
+\subsection{微積分是什麼}
 \begin{frame}{先備知識}
     \begin{figure}
         \href
@@ -90,15 +92,28 @@
     \end{quote}
 \end{frame}
 
-\section{從集合到函數}
-\subsection{從集合到序對}
+\begin{frame}{微積分是什麼}
+    微積分是研究\textbf{連續}、\textbf{變化}的數學。
+
+    \begin{description}
+        \item[連續] 用\textbf{實數}來表示連續
+        \item[變化] 用\textbf{函數}來表示變化
+    \end{description}
+
+    微積分的主要研究對象是以實數為參數的函數。
+\end{frame}
+
+\section{集合}
 \begin{frame}{集合}
-    當今所有數學實體都可視為集合。也就是說，數學的宇宙就是\href
+    數學是研究\textbf{數}和\textbf{形}的學問。數學家發現他們都可以用\textbf{集合}來表示。
+
+    數學的宇宙就是\href
         {https://zh.wikipedia.org/wiki/\%E5\%86\%AF\%C2\%B7\%E8\%AF\%BA\%E4\%BC\%8A\%E6\%9B\%BC\%E5\%85\%A8\%E9\%9B\%86}
         {集合的宇宙}。
 
     \begin{itemize}
         \item 集合可以等於其他集合
+        \item 集合內只有集合
         \item 集合一定屬於另一個集合
     \end{itemize}
 
@@ -134,71 +149,10 @@
     \eqref{eq:df-op} 不是從集合定義序對的唯一方法。
 \end{frame}
 
-\subsection{從關係到函數}
-\newcommand{\V}{\textup V}
-\newcommand{\conv}{^\smallsmile\!}
-
-\begin{frame}{類 (class)}
-    任意的一群集合\textbf{不一定}能組成一個集合，因為可能大到無法裝進另一個集合。
-    我們把它稱為\textbf{類}。
-
-    \begin{definition}
-        \[ \left\{ x \middle| \phi \right\} \]
-        是一個類，其中 $x$ 是集合變數，$\phi$ 是作為條件\footnote{邏輯上喜歡把
-        這個條件稱作類的\textbf{內涵}}的句子。
-    \end{definition}
-
-    集合都是類，類不都是集合。
-\end{frame}
-
-\begin{frame}{宇類 (universal class)}
-    \begin{definition}
-        所有集合都屬於宇類。
-        \[ \V = \left\{ x \middle| x = x \right\}.\]
-    \end{definition}
-
-    所以如果要表達 $A$ 是集合，也可以寫
-    \[ A \in \textup V.\]
-\end{frame}
-
-\begin{frame}{空集合}
-    \begin{definition}
-        沒有集合屬於空集合。
-        \[ \varnothing = \left\{ x \middle| x \ne x \right\}.\]
-    \end{definition}
-
-    \mmhref{ax-nul}{空集公理}聲明這樣的類是個集合。
-\end{frame}
-
-\begin{frame}{笛卡爾積}
-    笛卡爾積把兩個類捉對展開。
-
-    \begin{definition}
-        \[
-            \left( A \times B \right) =
-            \left\{ \left\langle x, y \right\rangle \middle| x \in A \wedge y \in B \right\}.
-        \]
-    \end{definition}
-
-    \begin{example}
-        \[
-            \left( \left\{ 8, 9 \right\} \times \left\{ 6, 4 \right\} \right) =
-            \left\{
-                \left\langle 8, 6 \right\rangle,
-                \left\langle 8, 4 \right\rangle,
-                \left\langle 9, 6 \right\rangle,
-                \left\langle 9, 4 \right\rangle
-            \right\}
-        \]
-    \end{example}
-\end{frame}
-
+\subsection{關係與函數}
 \begin{frame}{關係}
     \begin{definition}
-        關係 $R$ 是序對構成的類，寫做
-        \[ R \subseteq \left( \V \times \V \right).\]
-
-        一般我們把 $A$, $B$, $R$ 三個類寫在一起的句子
+        一般我們把 $A$, $B$, $R$ 三個集合寫在一起的句子
         \[ ARB \]
 
         視為 $\left\langle A, B \right\rangle \in R$ 的簡寫。
@@ -212,13 +166,26 @@
 \begin{frame}{反關係}
     \begin{definition}
         反關係就是把關係的左右參數互換。
-        \[ \conv R = \left\{ \left\langle x, y \right\rangle \middle| yRx \right\}.\]
+        \[ A R^{-1} B \quad \mbox{即} \quad BRA.\]
     \end{definition}
 
-    所以當 $A$, $B$ 是集合，$A \conv R B$ 即 $BRA$。
+    \begin{example}
+        \[ > \ = \ <^{-1}.\]
+    \end{example}
+\end{frame}
+
+\begin{frame}{複合關係}
+    \begin{definition}
+        滿足複合關係，意味著存在著「中間人」串起兩個關係。
+
+        \[ A \left( F \circ G \right) B \]
+
+        即存在一個 $x$ 使得
+        \[ AGx \quad \mbox{且} \quad xFB \]
+    \end{definition}
 
     \begin{example}
-        \[ > \ = \ \conv<.\]
+        \[ \mbox{姑姑} = \left( \mbox{姐妹} \circ \mbox{爸爸} \right). \]
     \end{example}
 \end{frame}
 \end{document}
