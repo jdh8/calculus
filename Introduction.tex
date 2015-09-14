@@ -8,7 +8,9 @@
 % See the files COPYING.* for more details.
 
 \documentclass{Slideshow}
+\usepackage{metamath}
 \newcommand{\mmhref}[2]{\href{http://us.metamath.org/mpeuni/#1.html}{#2}}
+\newcommand{\mmurl}[1]{\mmhref{#1}{#1}}
 
 \begin{document}
 \title[微積分演習課]{臺北醫學大學微積分演習課}
@@ -103,6 +105,152 @@
     微積分的主要研究對象是以實數為參數的函數。
 \end{frame}
 
+\section{邏輯}
+\begin{frame}{推理}
+    定理需要其他已證實的定理證明？
+
+    \[ \wph \to \wps \to \wch \to \wth \]
+
+    如果我們什麼都不相信，根本推理不出任何東西。
+
+    \begin{description}
+        \item[公理] 不證自明，預先設定為真。
+        \item[定理] 由公理或其他已證明的定理證明為真。
+    \end{description}
+\end{frame}
+
+\begin{frame}{形式系統}
+    \begin{description}
+        \item[文法] 用來決定符號怎麼組合成句子 (wff)\footnote{well-formed
+            formula, 一般譯作「完構式」等。}
+        \item[公理] 不證自明，預先設定為真的句子
+        \item[推論規則] 有前提的公理
+        \item[定義] 引入新符號的公理，不能使原系統證明更多句子
+        \item[定理] 由公理或其他已證明的定理證明為真
+    \end{description}
+\end{frame}
+
+\begin{frame}{Metamath}
+    \mmhref{mmtheorems}{Metamath} 是描述形式系統的語言。文法只有簡單的取代。
+
+    \begin{description}
+        \item[句子] 用第一個字說明句子的性質
+        \item[文法] 以某性質的某變數為前提，把變數組成句子
+    \end{description}
+\end{frame}
+
+\subsection{命題邏輯}
+\begin{frame}{命題邏輯}
+    命題邏輯研究句子之間的關係。
+
+    \begin{description}
+        \item[蘊涵] $\left( \wph \to \wps \right)$ 是推理的核心
+        \item[否定] $\neg\wph$
+        \item[等價] $\left( \wph \leftrightarrow \wps \right)$ 用來定義新符號
+        \item[且] $\left( \wph \wedge \wps \right)$
+        \item[或] $\left( \wph \vee \wps \right)$
+    \end{description}
+\end{frame}
+
+\subsubsection{蘊涵}
+\begin{frame}{邏輯蘊涵}
+    \begin{syntax}
+        假說：
+        \begin{align*}
+            \wff \wph \\
+            \wff \wps
+        \end{align*}
+
+        斷言：
+        \[ \wff \left( \wph \to \wps \right) \]
+    \end{syntax}
+\end{frame}
+
+\begin{frame}{公理 1：蘊涵的簡化}
+    \begin{axiom}[\mmurl{ax-1}]
+        斷言：
+        \[ \left( \wph \to \left( \wps \to \wph \right) \right) \]
+    \end{axiom}
+
+    如果 $\wph$ 是真理，那麼加上任意前提 $\wps$ 都成立。
+\end{frame}
+
+\begin{frame}{公理 2：蘊涵的分配律}
+    \begin{axiom}[\mmurl{ax-2}]
+        斷言：
+        \[
+            \left(
+                \left( \wph \to \left( \wps \to \wch \right) \right)
+                \to
+                \left(
+                    \left( \wph \to \wps \right)
+                    \to
+                    \left( \wph \to \wch \right)
+                \right)
+            \right)
+        \]
+    \end{axiom}
+
+    Frege 是一位想把所有的數學運算奠基在邏輯上的數學家。這條公理是他在他的公理
+    系統中首先提出的。
+\end{frame}
+
+\begin{frame}{推論規則：肯定前件}
+    \begin{axiom}[\mmurl{ax-mp}]
+        假說：
+        \[ \wph                         \tag{小前提} \]
+        \[ \left( \wph \to \wps \right) \tag{大前提} \]
+
+        斷言：
+        \[ \wps \]
+    \end{axiom}
+
+    這可以用來把定理 $\left( \wph \to \wps \right)$ 的 $\wps$ 兌現出來。
+\end{frame}
+
+\begin{frame}{定理、演繹、推論}
+    要描述「若 $\sigma$ 則 $\tau$」有三種表示方法：
+    \begin{description}
+        \item[定理] $\left( \sigma \to \tau \right)$
+        \item[推論] $\sigma$ 能推論出 $\tau$
+        \item[演繹] $\left( \wph \to \sigma \right)$ 能推論出 $\left( \wph \to \tau \right)$
+    \end{description}
+
+    推論是最弱的形式，需要複雜的\mmhref{mmdeduction}{演繹定理}才能化為另外兩者。
+    \begin{description}
+        \item[定理 $\implies$ 推論] 肯定前件 (\mmurl{ax-mp})
+        \item[定理 $\implies$ 演繹] 三段論 (\mmurl{syl})
+        \item[演繹 $\implies$ 定理] 同一律 (\mmurl{id})
+    \end{description}
+\end{frame}
+
+\begin{frame}{公理 1 的推論形式}
+    \begin{theorem}
+        假說：
+        \[ \wph \]
+
+        斷言：
+        \[ \left( \wps \to \wph \right) \]
+
+        \begin{proof}
+            \begin{enumerate} \upshape
+                \item \label{a1i:1}
+                    \makebox[2em]{}
+                    \makebox[3em]{前提}
+                    $\wph$
+                \item \label{a1i:2}
+                    \makebox[2em]{}
+                    \makebox[3em]{ax-1}
+                    $\left( \wph \to \left( \wps \to \wph \right) \right)$
+                \item
+                    \makebox[2em]{\ref{a1i:1}, \ref{a1i:2}}
+                    \makebox[3em]{ax-mp}
+                    $\left( \wps \to \wph \right)$
+            \end{enumerate}
+        \end{proof}
+    \end{theorem}
+\end{frame}
+
 \section{集合}
 \begin{frame}{集合}
     數學是研究\textbf{數}和\textbf{形}的學問。數學家發現他們都可以用\textbf{集合}來表示。
@@ -118,7 +266,6 @@
     \end{itemize}
 
     集合可以透過公理化集合論定義。
-    \mmhref{mmtheorems}{Metamath} 有精美範例。
 \end{frame}
 
 \begin{frame}{無序對}

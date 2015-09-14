@@ -19,8 +19,12 @@
 
 \deftranslation[to=chinese]{Definition}{定義}
 \deftranslation[to=chinese]{Example}{範例}
+\deftranslation[to=chinese]{Theorem}{定理}
 
-\setCJKmainfont[AutoFakeBold]{WenQuanYi Micro Hei}
+\newtheorem{syntax}{文法}
+\newtheorem{axiom}{公理}
+
+\setCJKmainfont[AutoFakeBold=2]{WenQuanYi Micro Hei}
 \hypersetup{colorlinks, linkcolor=}
 \useoutertheme{sidebar}
 \usecolortheme{rose}
