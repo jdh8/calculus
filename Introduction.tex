@@ -9,8 +9,6 @@
 
 \documentclass{Slideshow}
 \usepackage{metamath}
-\newcommand{\mmhref}[2]{\href{http://us.metamath.org/mpeuni/#1.html}{#2}}
-\newcommand{\mmurl}[1]{\mmhref{#1}{#1}}
 
 \begin{document}
 \title[微積分演習課]{臺北醫學大學微積分演習課}
@@ -232,22 +230,14 @@
         斷言：
         \[ \left( \wps \to \wph \right) \]
 
-        \begin{proof}
-            \begin{enumerate} \upshape
-                \item \label{a1i:1}
-                    \makebox[2em]{}
-                    \makebox[3em]{前提}
-                    $\wph$
-                \item \label{a1i:2}
-                    \makebox[2em]{}
-                    \makebox[3em]{ax-1}
-                    $\left( \wph \to \left( \wps \to \wph \right) \right)$
-                \item
-                    \makebox[2em]{\ref{a1i:1}, \ref{a1i:2}}
-                    \makebox[3em]{ax-mp}
-                    $\left( \wps \to \wph \right)$
-            \end{enumerate}
-        \end{proof}
+        \begin{mmproof}{2em}{3em}
+            \statement{前提} \label{a1i:1}
+                $\wph$
+            \statement{ax-1} \label{a1i:2}
+                $\left( \wph \to \left( \wps \to \wph \right) \right)$
+            \statement[\ref{a1i:1}, \ref{a1i:2}]{ax-mp}
+                $\left( \wps \to \wph \right)$
+        \end{mmproof}
     \end{theorem}
 \end{frame}
 

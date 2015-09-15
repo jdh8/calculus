@@ -12,6 +12,7 @@
 
 \RequirePackage{color}
 
+%%% Syntax highlighting %%%
 \newcommand{\metamath@type}[1]{{\color{gray}#1}\;}
 
 \newcommand{\metamath@var}[1]{{\color{red}#1}}
@@ -89,3 +90,16 @@
 \newcommand{\cX}{\metamath@class X}
 \newcommand{\cY}{\metamath@class Y}
 \newcommand{\cZ}{\metamath@class Z}
+
+%%% Cross reference %%%
+\newcommand{\mmhref}[2]{\href{http://us.metamath.org/mpeuni/#1.html}{#2}}
+\newcommand{\mmurl}[1]{\mmhref{#1}{#1}}
+
+\newenvironment{mmproof}[2]{
+    \begin{proof}
+        \begin{enumerate} \upshape
+            \newcommand{\statement}[2][]{\item\makebox[#1]{##1}\makebox[#2]{##2}}
+}{          % content %
+        \end{enumerate}
+    \end{proof}
+}
