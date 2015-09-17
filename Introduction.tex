@@ -138,15 +138,21 @@
 \end{frame}
 
 \subsection{命題邏輯}
+\newcommand{\wn}{\neg}
+\newcommand{\wi}[2]{\left( #1 \to #2 \right)}
+\newcommand{\wb}[2]{\left( \wph \leftrightarrow \wps \right)}
+\newcommand{\wa}[2]{\left( \wph \wedge \wps \right)}
+\newcommand{\wo}[2]{\left( \wph \vee \wps \right)}
+
 \begin{frame}{命題邏輯}
     命題邏輯研究句子之間的關係。
 
     \begin{description}
-        \item[蘊涵] $\left( \wph \to \wps \right)$ 是推理的核心
-        \item[否定] $\neg\wph$
-        \item[等價] $\left( \wph \leftrightarrow \wps \right)$ 用來定義新符號
-        \item[且] $\left( \wph \wedge \wps \right)$
-        \item[或] $\left( \wph \vee \wps \right)$
+        \item[蘊涵] $\wi\wph\wps$ 是推理的核心
+        \item[否定] $\wn\wph$
+        \item[等價] $\wb\wph\wps$ 用來定義新符號
+        \item[且] $\wa\wph\wps$
+        \item[或] $\wo\wph\wps$
     \end{description}
 \end{frame}
 
@@ -160,33 +166,28 @@
         \end{align*}
 
         斷言：
-        \[ \wff \left( \wph \to \wps \right) \]
+        \[ \wff \wi\wph\wps \]
     \end{syntax}
 \end{frame}
+
+\newcommand{\axI}[2]{\wi{#1}{\wi{#2}{#1}}}
 
 \begin{frame}{公理 1：蘊涵的簡化}
     \begin{axiom}[\mmurl{ax-1}]
         斷言：
-        \[ \left( \wph \to \left( \wps \to \wph \right) \right) \]
+        \[ \axI\wph\wps \]
     \end{axiom}
 
     如果 $\wph$ 是真理，那麼加上任意前提 $\wps$ 都成立。
 \end{frame}
 
+\newcommand{\aIIi}[3]{\wi{\wi{#1}{#2}}{\wi{#1}{#3}}}
+\newcommand{\axII}[3]{\wi{\wi{#1}{\wi{#2}{#3}}}{\aIIi{#1}{#2}{#3}}}
+
 \begin{frame}{公理 2：蘊涵的分配律}
     \begin{axiom}[\mmurl{ax-2}]
         斷言：
-        \[
-            \left(
-                \left( \wph \to \left( \wps \to \wch \right) \right)
-                \to
-                \left(
-                    \left( \wph \to \wps \right)
-                    \to
-                    \left( \wph \to \wch \right)
-                \right)
-            \right)
-        \]
+        \[ \axII\wph\wps\wch \]
     \end{axiom}
 
     Frege 是一位想把所有的數學運算奠基在邏輯上的數學家。這條公理是他在他的公理
@@ -196,22 +197,22 @@
 \begin{frame}{推論規則：肯定前件}
     \begin{axiom}[\mmurl{ax-mp}]
         假說：
-        \[ \wph                         \tag{小前提} \]
-        \[ \left( \wph \to \wps \right) \tag{大前提} \]
+        \[ \wph        \tag{min} \]
+        \[ \wi\wph\wps \tag{maj} \]
 
         斷言：
         \[ \wps \]
     \end{axiom}
 
-    這可以用來把定理 $\left( \wph \to \wps \right)$ 的 $\wps$ 兌現出來。
+    這可以用來把定理 $\wi\wph\wps$ 的 $\wps$ 兌現出來。
 \end{frame}
 
 \begin{frame}{定理、演繹、推論}
     要描述「若 $\sigma$ 則 $\tau$」有三種表示方法：
     \begin{description}
-        \item[定理] $\left( \sigma \to \tau \right)$
+        \item[定理] $\wi\sigma\tau$
         \item[推論] $\sigma$ 能推論出 $\tau$
-        \item[演繹] $\left( \wph \to \sigma \right)$ 能推論出 $\left( \wph \to \tau \right)$
+        \item[演繹] $\wi\wph\sigma$ 能推論出 $\wi\wph\tau$
     \end{description}
 
     推論是最弱的形式，需要複雜的\mmhref{mmdeduction}{演繹定理}才能化為另外兩者。
@@ -223,22 +224,119 @@
 \end{frame}
 
 \begin{frame}{公理 1 的推論形式}
-    \begin{theorem}
+    \begin{theorem}[\mmurl{a1i}]
         假說：
-        \[ \wph \]
+        \[ \wph \tag{a1i.1} \]
 
         斷言：
-        \[ \left( \wps \to \wph \right) \]
+        \[ \wi\wps\wph \]
 
         \begin{mmproof}{2em}{3em}
-            \statement{前提}
+            \statement{a1i.1}
                 $\wph$
                 \label{a1i:1}
-            \statement{ax-1}
-                $\left( \wph \to \left( \wps \to \wph \right) \right)$
+            \statement{\mmurl{ax-1}}
+                $\axI\wph\wps$
                 \label{a1i:2}
-            \statement[\ref{a1i:1}, \ref{a1i:2}]{ax-mp}
-                $\left( \wps \to \wph \right)$
+            \statement[\ref{a1i:1}, \ref{a1i:2}]{\mmurl{ax-mp}}
+                $\wi\wps\wph$
+        \end{mmproof}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{公理 2 的推論形式}
+    \begin{theorem}[\mmurl{a2i}]
+        \newcommand{\hyp}{\wi\wph{\wi\wps\wch}}
+
+        假說：
+        \[ \hyp \tag{a2i.1} \]
+
+        斷言：
+        \[ \aIIi\wph\wps\wch \]
+
+        \begin{mmproof}{2em}{3em}
+            \statement{a2i.1}
+                $\hyp$
+                \label{a2i:1}
+            \statement{\mmurl{ax-2}}
+                $\wi\hyp{\aIIi\wph\wps\wch}$
+                \label{a2i:2}
+            \statement[\ref{a2i:1}, \ref{a2i:2}]{\mmurl{ax-mp}}
+                $\aIIi\wph\wps\wch$
+        \end{mmproof}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{肯定前件的演繹}
+    \begin{theorem}[\mmurl{mpd}]
+        假說：
+        \[ \wi\wph\wps          \tag{mpd.1} \]
+        \[ \wi\wph{\wi\wps\wch} \tag{mpd.2} \]
+
+        斷言：
+        \[ \wi\wph\wch \]
+    \end{theorem}
+
+    這個演繹必須額外證明，因為它要用來證明三段論。
+\end{frame}
+
+\begin{frame}{肯定前件的演繹的證明}
+    \begin{mmproof}{2em}{3em}
+        \statement{mpd.1}
+            $\wi\wph\wps$
+            \label{mpd:1}
+        \statement{mpd.2}
+            $\wi\wph{\wi\wps\wch}$
+            \label{mpd:2}
+        \statement[\ref{mpd:2}]{\mmurl{a2i}}
+            $\aIIi\wph\wps\wch$
+            \label{mpd:3}
+        \statement[\ref{mpd:1}, \ref{mpd:3}]{\mmurl{ax-mp}}
+            $\wi\wph\wch$
+    \end{mmproof}
+\end{frame}
+
+\begin{frame}{三段論}
+    \begin{theorem}[\mmurl{syl}]
+        假說：
+        \[ \wi\wph\wps \tag{syl.1} \]
+        \[ \wi\wps\wch \tag{syl.2} \]
+
+        斷言：
+        \[ \wi\wph\wch \]
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{三段論的證明}
+    \begin{mmproof}{2em}{3em}
+        \statement{syl.1}
+            $\wi\wph\wps$
+            \label{syl:1}
+        \statement{syl.2}
+            $\wi\wps\wch$
+            \label{syl:2}
+        \statement[\ref{syl:2}]{\mmurl{a1i}}
+            $\wi\wph{\wi\wps\wch}$
+            \label{syl:3}
+        \statement[\ref{syl:1}, \ref{syl:3}]{\mmurl{mpd}}
+            $\wi\wph\wch$
+    \end{mmproof}
+\end{frame}
+
+\begin{frame}{同一律}
+    \begin{theorem}[\mmurl{id}]
+        斷言：
+        \[ \wi\wph\wph \]
+
+        \begin{mmproof}{2em}{3em}
+            \statement{\mmurl{ax-1}}
+                $\axI\wph\wph$
+                \label{id:1}
+            \statement{\mmurl{ax-1}}
+                $\axI\wph{\wi\wph\wph}$
+                \label{id:2}
+            \statement[\ref{id:1}, \ref{id:2}]{\mmurl{mpd}}
+                $\wi\wph\wph$
         \end{mmproof}
     \end{theorem}
 \end{frame}
