@@ -1,0 +1,345 @@
+% Copyright (C) 2015 Chen-Pang He <http://jdh8.org/>
+%
+% This file may be distributed and/or modified under
+%
+% 1. LaTeX Project Public License
+% 2. GNU Public License
+%
+% See the files COPYING.* for more details.
+
+\documentclass{Slideshow}
+\usepackage{metamath}
+
+\begin{document}
+\title[邏輯]{邏輯}
+\maketitle
+
+\begin{frame}{推理}
+    定理需要其他已證實的定理證明？
+
+    \[ \wph \to \wps \to \wch \to \wth \]
+
+    如果我們什麼都不相信，根本推理不出任何東西。
+
+    \begin{description}
+        \item[公理] 不證自明，預先設定為真。
+        \item[定理] 由公理或其他已證明的定理證明為真。
+    \end{description}
+\end{frame}
+
+\begin{frame}{形式系統}
+    \begin{description}
+        \item[文法] 用來決定符號怎麼組合成句子 (wff)\footnote{well-formed
+            formula, 一般譯作「完構式」等。}
+        \item[公理] 不證自明，預先設定為真的句子
+        \item[推論規則] 有前提的公理
+        \item[定義] 引入新符號的公理，不能使原系統證明更多句子
+        \item[定理] 由公理或其他已證明的定理證明為真
+    \end{description}
+\end{frame}
+
+\begin{frame}{Metamath}
+    \mmhref{mmtheorems}{Metamath} 是描述形式系統的語言。文法只有簡單的取代。
+
+    \begin{description}
+        \item[句子] 用第一個字說明句子的性質
+        \item[文法] 以某性質的某變數為前提，把變數組成句子
+    \end{description}
+\end{frame}
+
+\section{命題邏輯}
+\newcommand{\wn}{\neg}
+\newcommand{\wi}[2]{\left( #1 \to #2 \right)}
+\newcommand{\wb}[2]{\left( #1 \leftrightarrow #2 \right)}
+\newcommand{\wa}[2]{\left( #1 \wedge #2 \right)}
+\newcommand{\wo}[2]{\left( #1 \vee #2 \right)}
+
+\begin{frame}{命題邏輯}
+    命題邏輯研究句子之間的關係。
+
+    \begin{description}
+        \item[蘊涵] $\wi\wph\wps$ 是推理的核心
+        \item[否定] $\wn\wph$
+        \item[等價] $\wb\wph\wps$ 用來定義新符號
+        \item[且] $\wa\wph\wps$
+        \item[或] $\wo\wph\wps$
+    \end{description}
+\end{frame}
+
+\newcommand{\aIIi}[3]{\wi{\wi{#1}{#2}}{\wi{#1}{#3}}}
+
+\newcommand{\axI}[2]{\wi{#1}{\wi{#2}{#1}}}
+\newcommand{\axII}[3]{\wi{\wi{#1}{\wi{#2}{#3}}}{\aIIi{#1}{#2}{#3}}}
+\newcommand{\axIII}[2]{\wi{\wi{\wn#1}{\wn#2}}{\wi{#2}{#1}}}
+
+\begin{frame}{\href
+    {https://zh.wikipedia.org/wiki/\%E6\%89\%AC\%C2\%B7\%E6\%AD\%A6\%E5\%8D\%A1\%E8\%B0\%A2\%E7\%BB\%B4\%E5\%A5\%87}
+    {Łukasiewicz} 的公理系統
+}
+    \[ \axI\wph\wps      \tag{\mmlink{ax-1}} \]
+    \[ \axII\wph\wps\wch \tag{\mmlink{ax-2}} \]
+    \[ \axIII\wph\wps    \tag{\mmlink{ax-3}} \]
+    \[ \wph \quad\&\quad \wi\wph\wps \quad\implies\quad \wps \tag{\mmlink{ax-mp}} \]
+\end{frame}
+
+\newcommand{\dfor}[2]{\wi{\wn#1}{#2}}
+\newcommand{\dfan}[2]{\wn\wi{#1}{\wn#2}}
+\newcommand{\dfbi}[2]{\dfan{\wi{#1}{#2}}{\wi{#2}{#1}}}
+
+\begin{frame}{定義其他邏輯符號}
+    $\wo\wph\wps$ 定義為 $\dfor\wph\wps$
+
+    $\wa\wph\wps$ 定義為 $\dfan\wph\wps$
+
+    $\wb\wph\wps$ 定義為 $\wa{\wi\wph\wps}{\wi\wps\wph}$
+\end{frame}
+
+\subsection{蘊涵}
+\begin{frame}{邏輯蘊涵}
+    \begin{syntax}
+        假說：
+        \begin{align*}
+            \wff \wph \\
+            \wff \wps
+        \end{align*}
+
+        斷言：
+        \[ \wff \wi\wph\wps \]
+    \end{syntax}
+\end{frame}
+
+\begin{frame}[label=ax-1]{公理 1：蘊涵的簡化}
+    \begin{axiom}[\mmurl{ax-1}]
+        斷言：
+        \[ \axI\wph\wps \]
+    \end{axiom}
+
+    如果 $\wph$ 是真理，那麼加上任意前提 $\wps$ 都成立。
+\end{frame}
+
+\begin{frame}[label=ax-2]{公理 2：蘊涵的分配律}
+    \begin{axiom}[\mmurl{ax-2}]
+        斷言：
+        \[ \axII\wph\wps\wch \]
+    \end{axiom}
+
+    \href
+        {https://zh.wikipedia.org/wiki/\%E6\%88\%88\%E7\%89\%B9\%E6\%B4\%9B\%E5\%B8\%83\%C2\%B7\%E5\%BC\%97\%E9\%9B\%B7\%E6\%A0\%BC}
+        {Frege}
+    是一位想把所有的數學運算奠基在邏輯上的數學家。這條公理是他在他的公理系統中
+    首先提出的。
+\end{frame}
+
+\begin{frame}[label=ax-mp]{推論規則：肯定前件}
+    \begin{axiom}[\mmurl{ax-mp}]
+        假說：
+        \[ \wph        \tag{min} \]
+        \[ \wi\wph\wps \tag{maj} \]
+
+        斷言：
+        \[ \wps \]
+    \end{axiom}
+
+    這可以用來把定理 $\wi\wph\wps$ 的 $\wps$ 兌現出來。
+\end{frame}
+
+\begin{frame}{定理、演繹、推論}
+    要描述「若 $\sigma$ 則 $\tau$」有三種表示方法：
+    \begin{description}
+        \item[定理] $\wi\sigma\tau$
+        \item[推論] $\sigma$ 能推論出 $\tau$
+        \item[演繹] $\wi\wph\sigma$ 能推論出 $\wi\wph\tau$
+    \end{description}
+
+    推論是最弱的形式，需要複雜的\mmhref{mmdeduction}{演繹定理}才能化為另外兩者。
+    \begin{description}
+        \item[定理 $\implies$ 推論] 肯定前件 (\mmlink{ax-mp})
+        \item[定理 $\implies$ 演繹] 三段論 (\mmlink{syl})
+        \item[演繹 $\implies$ 定理] 同一律 (\mmlink{id})
+    \end{description}
+\end{frame}
+
+\begin{frame}[label=a1i]{公理 1 的推論形式}
+    \begin{theorem}[\mmurl{a1i}]
+        假說：
+        \[ \wph \tag{a1i.1} \]
+
+        斷言：
+        \[ \wi\wps\wph \]
+
+        \begin{mmproof}{2em}{3em}
+            \statement{a1i.1}
+                $\wph$
+                \label{a1i:1}
+            \statement{\mmlink{ax-1}}
+                $\axI\wph\wps$
+                \label{a1i:2}
+            \statement[\ref{a1i:1}, \ref{a1i:2}]{\mmlink{ax-mp}}
+                $\wi\wps\wph$
+        \end{mmproof}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}[label=a2i]{公理 2 的推論形式}
+    \begin{theorem}[\mmurl{a2i}]
+        \newcommand{\hyp}{\wi\wph{\wi\wps\wch}}
+
+        假說：
+        \[ \hyp \tag{a2i.1} \]
+
+        斷言：
+        \[ \aIIi\wph\wps\wch \]
+
+        \begin{mmproof}{2em}{3em}
+            \statement{a2i.1}
+                $\hyp$
+                \label{a2i:1}
+            \statement{\mmlink{ax-2}}
+                $\wi\hyp{\aIIi\wph\wps\wch}$
+                \label{a2i:2}
+            \statement[\ref{a2i:1}, \ref{a2i:2}]{\mmlink{ax-mp}}
+                $\aIIi\wph\wps\wch$
+        \end{mmproof}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}[label=mpd]{肯定前件的演繹}
+    \begin{theorem}[\mmurl{mpd}]
+        假說：
+        \[ \wi\wph\wps          \tag{mpd.1} \]
+        \[ \wi\wph{\wi\wps\wch} \tag{mpd.2} \]
+
+        斷言：
+        \[ \wi\wph\wch \]
+    \end{theorem}
+
+    這個演繹必須額外證明，因為它要用來證明三段論。
+\end{frame}
+
+\begin{frame}{肯定前件的演繹的證明}
+    \begin{mmproof}{2em}{3em}
+        \statement{mpd.1}
+            $\wi\wph\wps$
+            \label{mpd:1}
+        \statement{mpd.2}
+            $\wi\wph{\wi\wps\wch}$
+            \label{mpd:2}
+        \statement[\ref{mpd:2}]{\mmlink{a2i}}
+            $\aIIi\wph\wps\wch$
+            \label{mpd:3}
+        \statement[\ref{mpd:1}, \ref{mpd:3}]{\mmlink{ax-mp}}
+            $\wi\wph\wch$
+    \end{mmproof}
+\end{frame}
+
+\begin{frame}[label=syl]{三段論}
+    \begin{theorem}[\mmurl{syl}]
+        假說：
+        \[ \wi\wph\wps \tag{syl.1} \]
+        \[ \wi\wps\wch \tag{syl.2} \]
+
+        斷言：
+        \[ \wi\wph\wch \]
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{三段論的證明}
+    \begin{mmproof}{2em}{3em}
+        \statement{syl.1}
+            $\wi\wph\wps$
+            \label{syl:1}
+        \statement{syl.2}
+            $\wi\wps\wch$
+            \label{syl:2}
+        \statement[\ref{syl:2}]{\mmlink{a1i}}
+            $\wi\wph{\wi\wps\wch}$
+            \label{syl:3}
+        \statement[\ref{syl:1}, \ref{syl:3}]{\mmlink{mpd}}
+            $\wi\wph\wch$
+    \end{mmproof}
+\end{frame}
+
+\begin{frame}[label=id]{同一律}
+    \begin{theorem}[\mmurl{id}]
+        斷言：
+        \[ \wi\wph\wph \]
+
+        \begin{mmproof}{2em}{3em}
+            \statement{\mmlink{ax-1}}
+                $\axI\wph\wph$
+                \label{id:1}
+            \statement{\mmlink{ax-1}}
+                $\axI\wph{\wi\wph\wph}$
+                \label{id:2}
+            \statement[\ref{id:1}, \ref{id:2}]{\mmlink{mpd}}
+                $\wi\wph\wph$
+        \end{mmproof}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}[label=a1d]{公理 1 的演繹}
+    \begin{theorem}[\mmurl{a1d}]
+        假說：
+        \[ \wi\wph\wps \tag{a1d.1} \]
+
+        斷言：
+        \[ \wi\wph{\wi\wch\wps} \]
+
+        \begin{mmproof}{2em}{4em}
+            \statement{a1d.1}
+                $\wi\wph\wps$
+                \label{a1d:1}
+            \statement{\mmlink{ax-1}}
+                $\axI\wps\wch$
+                \label{a1d:2}
+            \statement[\ref{a1d:1}, \ref{a1d:2}]{\mmlink{syl}}
+                $\wi\wph{\wi\wch\wps}$
+        \end{mmproof}
+    \end{theorem}
+\end{frame}
+
+\subsection{否定}
+\begin{frame}{否定}
+    \begin{syntax}
+        假說：
+        \[ \wff \wph \]
+
+        斷言：
+        \[ \wff \wn\wph \]
+    \end{syntax}
+\end{frame}
+
+\begin{frame}[label=ax-3]{公理 3：換位律}
+    \begin{axiom}[\mmurl{ax-3}]
+        斷言：
+        \[ \axIII\wph\wps \]
+    \end{axiom}
+
+    \begin{example}
+        如果天空沒有雲就不會下雨，那麼如果下雨了，天空一定有雲。
+    \end{example}
+\end{frame}
+
+\begin{frame}[label=con4d]{公理 3 的演繹}
+    \begin{theorem}[\mmurl{con4d}]
+        \newcommand{\hyp}{\wi\wph{\wi{\wn\wps}{\wn\wch}}}
+
+        假說：
+        \[ \hyp \tag{con4d.1} \]
+
+        斷言：
+        \[ \wi\wph{\wi\wch\wps} \]
+
+        \begin{mmproof}{2em}{4em}
+            \statement{con4d.1}
+                $\hyp$
+                \label{con4d:1}
+            \statement{\mmlink{ax-3}}
+                $\axIII\wps\wch$
+                \label{con4d:2}
+            \statement[\ref{con4d:1}, \ref{con4d:2}]{\mmlink{syl}}
+                $\wi\wph{\wi\wch\wps}$
+        \end{mmproof}
+    \end{theorem}
+\end{frame}
+\end{document}
