@@ -140,9 +140,9 @@
 \subsection{命題邏輯}
 \newcommand{\wn}{\neg}
 \newcommand{\wi}[2]{\left( #1 \to #2 \right)}
-\newcommand{\wb}[2]{\left( \wph \leftrightarrow \wps \right)}
-\newcommand{\wa}[2]{\left( \wph \wedge \wps \right)}
-\newcommand{\wo}[2]{\left( \wph \vee \wps \right)}
+\newcommand{\wb}[2]{\left( #1 \leftrightarrow #2 \right)}
+\newcommand{\wa}[2]{\left( #1 \wedge #2 \right)}
+\newcommand{\wo}[2]{\left( #1 \vee #2 \right)}
 
 \begin{frame}{命題邏輯}
     命題邏輯研究句子之間的關係。
@@ -154,6 +154,31 @@
         \item[且] $\wa\wph\wps$
         \item[或] $\wo\wph\wps$
     \end{description}
+\end{frame}
+
+\newcommand{\aIIi}[3]{\wi{\wi{#1}{#2}}{\wi{#1}{#3}}}
+
+\newcommand{\axI}[2]{\wi{#1}{\wi{#2}{#1}}}
+\newcommand{\axII}[3]{\wi{\wi{#1}{\wi{#2}{#3}}}{\aIIi{#1}{#2}{#3}}}
+\newcommand{\axIII}[2]{\wi{\wi{\wn#1}{\wn#2}}{\wi{#2}{#1}}}
+
+\begin{frame}{Łukasiewicz 的公理系統}
+    \[ \axI\wph\wps      \tag{\mmurl{ax-1}} \]
+    \[ \axII\wph\wps\wch \tag{\mmurl{ax-2}} \]
+    \[ \axIII\wph\wps    \tag{\mmurl{ax-3}} \]
+    \[ \wph \quad\&\quad \wi\wph\wps \quad\implies\quad \wps \tag{\mmurl{ax-mp}} \]
+\end{frame}
+
+\newcommand{\dfor}[2]{\wi{\wn#1}{#2}}
+\newcommand{\dfan}[2]{\wn\wi{#1}{\wn#2}}
+\newcommand{\dfbi}[2]{\dfan{\wi{#1}{#2}}{\wi{#2}{#1}}}
+
+\begin{frame}{定義其他邏輯符號}
+    $\wo\wph\wps$ 定義為 $\dfor\wph\wps$
+
+    $\wa\wph\wps$ 定義為 $\dfan\wph\wps$
+
+    $\wb\wph\wps$ 定義為 $\wa{\wi\wph\wps}{\wi\wps\wph}$
 \end{frame}
 
 \subsubsection{蘊涵}
@@ -170,8 +195,6 @@
     \end{syntax}
 \end{frame}
 
-\newcommand{\axI}[2]{\wi{#1}{\wi{#2}{#1}}}
-
 \begin{frame}{公理 1：蘊涵的簡化}
     \begin{axiom}[\mmurl{ax-1}]
         斷言：
@@ -180,9 +203,6 @@
 
     如果 $\wph$ 是真理，那麼加上任意前提 $\wps$ 都成立。
 \end{frame}
-
-\newcommand{\aIIi}[3]{\wi{\wi{#1}{#2}}{\wi{#1}{#3}}}
-\newcommand{\axII}[3]{\wi{\wi{#1}{\wi{#2}{#3}}}{\aIIi{#1}{#2}{#3}}}
 
 \begin{frame}{公理 2：蘊涵的分配律}
     \begin{axiom}[\mmurl{ax-2}]
