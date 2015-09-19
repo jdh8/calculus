@@ -167,16 +167,18 @@
         斷言：
         \[ \wi\wps\wph \]
 
-        \begin{mmtable}{2em}{3em}
-            \statement{a1i.1}
-                $\wph$
-                \label{a1i:1}
-            \statement{\mmlink{ax-1}}
-                $\axI\wph\wps$
-                \label{a1i:ax-1}
-            \statement[\ref{a1i:1}, \ref{a1i:ax-1}]{\mmlink{ax-mp}}
-                $\wi\wps\wph$
-        \end{mmtable}
+        \begin{mmproof}
+            \begin{mmtable}{2em}{3em}
+                \statement{a1i.1}
+                    $\wph$
+                    \label{a1i:1}
+                \statement{\mmlink{ax-1}}
+                    $\axI\wph\wps$
+                    \label{a1i:ax-1}
+                \statement[\ref{a1i:1}, \ref{a1i:ax-1}]{\mmlink{ax-mp}}
+                    $\wi\wps\wph$
+            \end{mmtable}
+        \end{mmproof}
     \end{theorem}
 \end{frame}
 
@@ -190,16 +192,18 @@
         斷言：
         \[ \aIIi\wph\wps\wch \]
 
-        \begin{mmtable}{2em}{3em}
-            \statement{a2i.1}
-                $\hyp$
-                \label{a2i:1}
-            \statement{\mmlink{ax-2}}
-                $\wi\hyp{\aIIi\wph\wps\wch}$
-                \label{a2i:ax-2}
-            \statement[\ref{a2i:1}, \ref{a2i:ax-2}]{\mmlink{ax-mp}}
-                $\aIIi\wph\wps\wch$
-        \end{mmtable}
+        \begin{mmproof}
+            \begin{mmtable}{2em}{3em}
+                \statement{a2i.1}
+                    $\hyp$
+                    \label{a2i:1}
+                \statement{\mmlink{ax-2}}
+                    $\wi\hyp{\aIIi\wph\wps\wch}$
+                    \label{a2i:ax-2}
+                \statement[\ref{a2i:1}, \ref{a2i:ax-2}]{\mmlink{ax-mp}}
+                    $\aIIi\wph\wps\wch$
+            \end{mmtable}
+        \end{mmproof}
     \end{theorem}
 \end{frame}
 
@@ -217,19 +221,21 @@
 \end{frame}
 
 \begin{frame}{肯定前件的演繹的證明}
-    \begin{mmtable}{2em}{3em}
-        \statement{mpd.1}
-            $\wi\wph\wps$
-            \label{mpd:1}
-        \statement{mpd.2}
-            $\wi\wph{\wi\wps\wch}$
-            \label{mpd:2}
-        \statement[\ref{mpd:2}]{\mmlink{a2i}}
-            $\aIIi\wph\wps\wch$
-            \label{mpd:a2i}
-        \statement[\ref{mpd:1}, \ref{mpd:a2i}]{\mmlink{ax-mp}}
-            $\wi\wph\wch$
-    \end{mmtable}
+    \begin{mmproof}
+        \begin{mmtable}{2em}{3em}
+            \statement{mpd.1}
+                $\wi\wph\wps$
+                \label{mpd:1}
+            \statement{mpd.2}
+                $\wi\wph{\wi\wps\wch}$
+                \label{mpd:2}
+            \statement[\ref{mpd:2}]{\mmlink{a2i}}
+                $\aIIi\wph\wps\wch$
+                \label{mpd:a2i}
+            \statement[\ref{mpd:1}, \ref{mpd:a2i}]{\mmlink{ax-mp}}
+                $\wi\wph\wch$
+        \end{mmtable}
+    \end{mmproof}
 \end{frame}
 
 \begin{frame}{三段論}
@@ -244,19 +250,21 @@
 \end{frame}
 
 \begin{frame}{三段論的證明}
-    \begin{mmtable}{2em}{3em}
-        \statement{syl.1}
-            $\wi\wph\wps$
-            \label{syl:1}
-        \statement{syl.2}
-            $\wi\wps\wch$
-            \label{syl:2}
-        \statement[\ref{syl:2}]{\mmlink{a1i}}
-            $\wi\wph{\wi\wps\wch}$
-            \label{syl:a1i}
-        \statement[\ref{syl:1}, \ref{syl:a1i}]{\mmlink{mpd}}
-            $\wi\wph\wch$
-    \end{mmtable}
+    \begin{mmproof}
+        \begin{mmtable}{2em}{3em}
+            \statement{syl.1}
+                $\wi\wph\wps$
+                \label{syl:1}
+            \statement{syl.2}
+                $\wi\wps\wch$
+                \label{syl:2}
+            \statement[\ref{syl:2}]{\mmlink{a1i}}
+                $\wi\wph{\wi\wps\wch}$
+                \label{syl:a1i}
+            \statement[\ref{syl:1}, \ref{syl:a1i}]{\mmlink{mpd}}
+                $\wi\wph\wch$
+        \end{mmtable}
+    \end{mmproof}
 \end{frame}
 
 \begin{frame}{同一律}
@@ -264,16 +272,18 @@
         斷言：
         \[ \wi\wph\wph \]
 
-        \begin{mmtable}{2em}{3em}
-            \statement{\mmlink{ax-1}}
-                $\axI\wph\wph$
-                \label{id:ax-1:1}
-            \statement{\mmlink{ax-1}}
-                $\axI\wph{\wi\wph\wph}$
-                \label{id:ax-1:2}
-            \statement[\ref{id:ax-1:1}, \ref{id:ax-1:2}]{\mmlink{mpd}}
-                $\wi\wph\wph$
-        \end{mmtable}
+        \begin{mmproof}
+            \begin{mmtable}{2em}{3em}
+                \statement{\mmlink{ax-1}}
+                    $\axI\wph\wph$
+                    \label{id:ax-1:1}
+                \statement{\mmlink{ax-1}}
+                    $\axI\wph{\wi\wph\wph}$
+                    \label{id:ax-1:2}
+                \statement[\ref{id:ax-1:1}, \ref{id:ax-1:2}]{\mmlink{mpd}}
+                    $\wi\wph\wph$
+            \end{mmtable}
+        \end{mmproof}
     \end{theorem}
 \end{frame}
 
@@ -285,16 +295,18 @@
         斷言：
         \[ \wi\wph{\wi\wch\wps} \]
 
-        \begin{mmtable}{2em}{4em}
-            \statement{a1d.1}
-                $\wi\wph\wps$
-                \label{a1d:1}
-            \statement{\mmlink{ax-1}}
-                $\axI\wps\wch$
-                \label{a1d:ax-1}
-            \statement[\ref{a1d:1}, \ref{a1d:ax-1}]{\mmlink{syl}}
-                $\wi\wph{\wi\wch\wps}$
-        \end{mmtable}
+        \begin{mmproof}
+            \begin{mmtable}{2em}{4em}
+                \statement{a1d.1}
+                    $\wi\wph\wps$
+                    \label{a1d:1}
+                \statement{\mmlink{ax-1}}
+                    $\axI\wps\wch$
+                    \label{a1d:ax-1}
+                \statement[\ref{a1d:1}, \ref{a1d:ax-1}]{\mmlink{syl}}
+                    $\wi\wph{\wi\wch\wps}$
+            \end{mmtable}
+        \end{mmproof}
     \end{theorem}
 \end{frame}
 
@@ -330,16 +342,18 @@
         斷言：
         \[ \wi\wph{\wi\wch\wps} \]
 
-        \begin{mmtable}{2em}{4em}
-            \statement{con4d.1}
-                $\hyp$
-                \label{con4d:1}
-            \statement{\mmlink{ax-3}}
-                $\axIII\wps\wch$
-                \label{con4d:ax-3}
-            \statement[\ref{con4d:1}, \ref{con4d:ax-3}]{\mmlink{syl}}
-                $\wi\wph{\wi\wch\wps}$
-        \end{mmtable}
+        \begin{mmproof}
+            \begin{mmtable}{2em}{4em}
+                \statement{con4d.1}
+                    $\hyp$
+                    \label{con4d:1}
+                \statement{\mmlink{ax-3}}
+                    $\axIII\wps\wch$
+                    \label{con4d:ax-3}
+                \statement[\ref{con4d:1}, \ref{con4d:ax-3}]{\mmlink{syl}}
+                    $\wi\wph{\wi\wch\wps}$
+            \end{mmtable}
+        \end{mmproof}
     \end{theorem}
 \end{frame}
 \end{document}
