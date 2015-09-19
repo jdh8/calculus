@@ -198,7 +198,7 @@
                     $\hyp$
                     \label{a2i:1}
                 \statement{\mmlink{ax-2}}
-                    $\wi\hyp{\aIIi\wph\wps\wch}$
+                    $\axII\wph\wps\wch$
                     \label{a2i:ax-2}
                 \statement[\ref{a2i:1}, \ref{a2i:ax-2}]{\mmlink{ax-mp}}
                     $\aIIi\wph\wps\wch$
@@ -353,6 +353,29 @@
                     \label{con4d:ax-3}
                 \statement[\ref{con4d:1}, \ref{con4d:ax-3}]{\mmlink{syl}}
                     $\wi\wph{\wi\wch\wps}$
+            \end{mmtable}
+        \end{mmproof}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{矛盾蘊涵任意事情，演繹形式}
+    \begin{theorem}[\mmtarget{pm2.21d}]
+        假說：
+        \[ \wi\wph{\wn\wps} \tag{pm2.21d.1} \]
+
+        斷言：
+        \[ \wi\wph{\wi\wps\wch} \]
+
+        \begin{mmproof}
+            \begin{mmtable}{1em}{5em}
+                \statement{pm2.21d.1}
+                    $\wi\wph{\wn\wps}$
+                    \label{pm2.21d:1}
+                \statement[\ref{pm2.21d:1}]{\mmlink{a1d}}
+                    $\wi\wph{\wi{\wn\wch}{\wn\wps}}$
+                    \label{pm2.21d:a1d}
+                \statement[\ref{pm2.21d:a1d}]{\mmlink{con4d}}
+                    $\wi\wph{\wi\wps\wch}$
             \end{mmtable}
         \end{mmproof}
     \end{theorem}
