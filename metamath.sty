@@ -93,14 +93,13 @@
 
 %%% Cross reference %%%
 \newcommand{\mmhref}[2]{\href{http://us.metamath.org/mpeuni/#1.html}{#2}}
-\newcommand{\mmurl}[1]{\mmhref{#1}{#1}}
+\newcommand{\mmtarget}[1]{\hypertarget{#1}{\mmhref{#1}{#1}}}
 \newcommand{\mmlink}[1]{\hypersetup{linkcolor=structure.fg}\hyperlink{#1}{#1}}
 
-\newenvironment{mmproof}[2]{
-    \begin{proof}
-        \begin{enumerate} \upshape
-            \newcommand{\statement}[2][]{\item\makebox[#1]{##1}\makebox[#2]{##2}}
-}{          % content %
-        \end{enumerate}
-    \end{proof}
+%% Metamath proof %%%
+\newenvironment{mmtable}[2]{
+    \begin{enumerate} \upshape
+        \newcommand{\statement}[2][]{\item\makebox[#1]{##1}\makebox[#2]{##2}}
+}{      % content %
+    \end{enumerate}
 }
