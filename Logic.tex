@@ -462,4 +462,21 @@
         \end{mmproof}
     \end{theorem}
 \end{frame}
+
+\begin{frame}{雙重否定除去}
+    \begin{theorem}[\mmtarget{notnot2}]
+        斷言：
+        \[ \left( \neg\neg\φ \to \φ \right) \]
+
+        \begin{mmproof}
+            \begin{mmtable}{1em}{5em}
+                \statement{\mmlink{pm2.21}}
+                    $\left( \neg\neg\φ \to \left( \neg\φ \to \φ \right) \right)$
+                    \label{notnot2:pm2.21}
+                \statement[\ref{notnot2:pm2.21}]{\mmlink{pm2.18d}}
+                    $\left( \neg\neg\φ \to \φ \right)$
+            \end{mmtable}
+        \end{mmproof}
+    \end{theorem}
+\end{frame}
 \end{document}
