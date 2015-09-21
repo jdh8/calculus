@@ -121,7 +121,7 @@
     首先提出的。
 \end{frame}
 
-\begin{frame}{推論規則：肯定前件}
+\begin{frame}{推論規則：肯定前件 (modus ponens)}
     \begin{axiom}[\mmtarget{ax-mp}]
         假說：
         \[ \tag{min} \φ \]
@@ -162,11 +162,11 @@
             \begin{mmtable}{2em}{3em}
                 \statement{a1i.1}
                     $\φ$
-                    \label{a1i:1}
+                    \label{a1i.1}
                 \statement{\mmlink{ax-1}}
                     $\left( \φ \to \left( \ψ \to \φ \right) \right)$
                     \label{a1i:ax-1}
-                \statement[\ref{a1i:1}, \ref{a1i:ax-1}]{\mmlink{ax-mp}}
+                \statement[\ref{a1i.1}, \ref{a1i:ax-1}]{\mmlink{ax-mp}}
                     $\left( \ψ \to \φ \right)$
             \end{mmtable}
         \end{mmproof}
@@ -185,14 +185,14 @@
             \begin{mmtable}{2em}{3em}
                 \statement{a2i.1}
                     $\left( \φ \to \left( \ψ \to \χ \right) \right)$
-                    \label{a2i:1}
+                    \label{a2i.1}
                 \statement{\mmlink{ax-2}}
                     $\left(
                         \left( \φ \to \left( \ψ \to \χ \right) \right) \to
                         \left( \left( \φ \to \ψ \right) \to \left( \φ \to \χ \right) \right)
                     \right)$
                     \label{a2i:ax-2}
-                \statement[\ref{a2i:1}, \ref{a2i:ax-2}]{\mmlink{ax-mp}}
+                \statement[\ref{a2i.1}, \ref{a2i:ax-2}]{\mmlink{ax-mp}}
                     $\left( \left( \φ \to \ψ \right) \to \left( \φ \to \χ \right) \right)$
             \end{mmtable}
         \end{mmproof}
@@ -217,14 +217,14 @@
         \begin{mmtable}{2em}{3em}
             \statement{mpd.1}
                 $\left( \φ \to \ψ \right)$
-                \label{mpd:1}
+                \label{mpd.1}
             \statement{mpd.2}
                 $\left( \φ \to \left( \ψ \to \χ \right) \right)$
-                \label{mpd:2}
-            \statement[\ref{mpd:2}]{\mmlink{a2i}}
+                \label{mpd.2}
+            \statement[\ref{mpd.2}]{\mmlink{a2i}}
                 $\left( \left( \φ \to \ψ \right) \to \left( \φ \to \χ \right) \right)$
                 \label{mpd:a2i}
-            \statement[\ref{mpd:1}, \ref{mpd:a2i}]{\mmlink{ax-mp}}
+            \statement[\ref{mpd.1}, \ref{mpd:a2i}]{\mmlink{ax-mp}}
                 $\left( \φ \to \χ \right)$
         \end{mmtable}
     \end{mmproof}
@@ -246,14 +246,14 @@
         \begin{mmtable}{2em}{3em}
             \statement{syl.1}
                 $\left( \φ \to \ψ \right)$
-                \label{syl:1}
+                \label{syl.1}
             \statement{syl.2}
                 $\left( \ψ \to \χ \right)$
-                \label{syl:2}
-            \statement[\ref{syl:2}]{\mmlink{a1i}}
+                \label{syl.2}
+            \statement[\ref{syl.2}]{\mmlink{a1i}}
                 $\left( \φ \to \left( \ψ \to \χ \right) \right)$
                 \label{syl:a1i}
-            \statement[\ref{syl:1}, \ref{syl:a1i}]{\mmlink{mpd}}
+            \statement[\ref{syl.1}, \ref{syl:a1i}]{\mmlink{mpd}}
                 $\left( \φ \to \χ \right)$
         \end{mmtable}
     \end{mmproof}
@@ -272,7 +272,7 @@
                 \statement{\mmlink{ax-1}}
                     $\left( \φ \to \left( \left( \φ \to \φ \right) \to \φ \right) \right)$
                     \label{id:ax-1:2}
-                \statement[\ref{id:ax-1:1}, \ref{id:ax-1:2}]{\mmlink{mpd}}
+                \statement[\ref{id:ax-1.1}, \ref{id:ax-1.2}]{\mmlink{mpd}}
                     $\left( \φ \to \φ \right)$
             \end{mmtable}
         \end{mmproof}
@@ -291,12 +291,35 @@
             \begin{mmtable}{2em}{4em}
                 \statement{a1d.1}
                     $\left( \φ \to \ψ \right)$
-                    \label{a1d:1}
+                    \label{a1d.1}
                 \statement{\mmlink{ax-1}}
                     $\left( \ψ \to \left( \χ \to \ψ \right) \right)$
                     \label{a1d:ax-1}
-                \statement[\ref{a1d:1}, \ref{a1d:ax-1}]{\mmlink{syl}}
+                \statement[\ref{a1d.1}, \ref{a1d:ax-1}]{\mmlink{syl}}
                     $\left( \φ \to \left( \χ \to \ψ \right) \right)$
+            \end{mmtable}
+        \end{mmproof}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{縮併冗餘的前提}
+    \begin{theorem}[\mmtarget{pm2.43i}]
+        假說：
+        \[ \tag{pm2.43i.1} \left( \φ \to \left( \φ \to \ψ \right) \right) \]
+
+        斷言：
+        \[ \left( \φ \to \ψ \right) \]
+
+        \begin{mmproof}
+            \begin{mmtable}{2em}{5em}
+                \statement{\mmlink{id}}
+                    $\left( \φ \to \φ \right)$
+                    \label{pm2.43i:id}
+                \statement{pm2.43i.1}
+                    $\left( \φ \to \left( \φ \to \ψ \right) \right)$
+                    \label{pm2.43i.1}
+                \statement[\ref{pm2.43i:id}, \ref{pm2.43i.1}]{\mmlink{mpd}}
+                    $\left( \φ \to \ψ \right)$
             \end{mmtable}
         \end{mmproof}
     \end{theorem}
@@ -337,11 +360,11 @@
             \begin{mmtable}{2em}{4em}
                 \statement{con4d.1}
                     $\left( \φ \to \left( \neg\ψ \to \neg\χ \right) \right)$
-                    \label{con4d:1}
+                    \label{con4d.1}
                 \statement{\mmlink{ax-3}}
                     $\left( \left( \neg\ψ \to \neg\χ \right) \to \left( \χ \to \ψ \right) \right)$
                     \label{con4d:ax-3}
-                \statement[\ref{con4d:1}, \ref{con4d:ax-3}]{\mmlink{syl}}
+                \statement[\ref{con4d.1}, \ref{con4d:ax-3}]{\mmlink{syl}}
                     $\left( \φ \to \left( \χ \to \ψ \right) \right)$
             \end{mmtable}
         \end{mmproof}
@@ -360,12 +383,81 @@
             \begin{mmtable}{1em}{5em}
                 \statement{pm2.21d.1}
                     $\left( \φ \to \neg\ψ \right)$
-                    \label{pm2.21d:1}
-                \statement[\ref{pm2.21d:1}]{\mmlink{a1d}}
+                    \label{pm2.21d.1}
+                \statement[\ref{pm2.21d.1}]{\mmlink{a1d}}
                     $\left( \φ \to \left( \neg\χ \to \neg\ψ \right) \right)$
                     \label{pm2.21d:a1d}
                 \statement[\ref{pm2.21d:a1d}]{\mmlink{con4d}}
                     $\left( \φ \to \left( \ψ \to \χ \right) \right)$
+            \end{mmtable}
+        \end{mmproof}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{矛盾蘊涵任意事情}
+    \begin{theorem}[\mmtarget{pm2.21}]
+        斷言：
+        \[ \left( \neg\φ \to \left( \φ \to \ψ \right) \right) \]
+
+        \begin{mmproof}
+            \begin{mmtable}{1em}{5em}
+                \statement{id}
+                    $\left( \neg\φ \to \neg\φ \right)$
+                    \label{pm2.21:id}
+                \statement[\ref{pm2.21:id}]{\mmlink{pm2.21d}}
+                    $\left( \neg\φ \to \left( \φ \to \ψ \right) \right)$
+            \end{mmtable}
+        \end{mmproof}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{反證法}
+    \begin{theorem}[\mmtarget{pm2.18}]
+        斷言：
+        \[ \left( \left( \neg\φ \to \φ \right) \to \φ \right) \]
+
+        \begin{mmproof}
+            \begin{mmtable}{1em}{5em}
+                \statement{\mmlink{pm2.21}}
+                    $\left( \neg\φ \to \left( \φ \to \neg \left( \neg\φ \to \φ \right) \right) \right)$
+                    \label{pm2.18:pm2.21}
+                \statement[\ref{pm2.18:pm2.21}]{\mmlink{a2i}}
+                    $\left(
+                        \left( \neg\φ \to \φ \right) \to
+                        \left( \neg\φ \to \neg \left( \neg\φ \to \φ \right) \right)
+                    \right)$
+                    \label{pm2.18:a2i}
+                \statement[\ref{pm2.18:a2i}]{\mmlink{con4d}}
+                    $\left(
+                        \left( \neg\φ \to \φ \right) \to
+                        \left( \left( \neg\φ \to \φ \right) \to \φ \right)
+                    \right)$
+                    \label{pm2.18:con4d}
+                \statement[\ref{pm2.18:con4d}]{\mmlink{pm2.43i}}
+                    $\left( \left( \neg\φ \to \φ \right) \to \φ \right)$
+            \end{mmtable}
+        \end{mmproof}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{反證法，演繹形式}
+    \begin{theorem}[\mmtarget{pm2.18d}]
+        假說：
+        \[ \tag{pm2.18d.1} \left( \φ \to \left( \neg\ψ \to \ψ \right) \right) \]
+
+        斷言：
+        \[ \left( \φ \to \ψ \right) \]
+
+        \begin{mmproof}
+            \begin{mmtable}{2em}{5em}
+                \statement{pm2.18d.1}
+                    $\left( \φ \to \left( \neg\ψ \to \ψ \right) \right)$
+                    \label{pm2.18d.1}
+                \statement{\mmlink{pm2.18}}
+                    $\left( \left( \neg\ψ \to \ψ \right) \to \ψ \right)$
+                    \label{pm2.18d:pm2.18}
+                \statement[\ref{pm2.18d.1}, \ref{pm2.18d:pm2.18}]{\mmlink{syl}}
+                    $\left( \φ \to \ψ \right)$
             \end{mmtable}
         \end{mmproof}
     \end{theorem}
