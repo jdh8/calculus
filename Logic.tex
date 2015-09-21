@@ -17,7 +17,7 @@
 \begin{frame}{推理}
     定理需要其他已證實的定理證明？
 
-    \[ \wph \to \wps \to \wch \to \wth \]
+    \[ \φ \to \ψ \to \χ \to \θ \]
 
     如果我們什麼都不相信，根本推理不出任何東西。
 
@@ -48,50 +48,38 @@
 \end{frame}
 
 \section{命題邏輯}
-\newcommand{\wn}{\neg}
-\newcommand{\wi}[2]{\left( #1 \to #2 \right)}
-\newcommand{\wb}[2]{\left( #1 \leftrightarrow #2 \right)}
-\newcommand{\wa}[2]{\left( #1 \wedge #2 \right)}
-\newcommand{\wo}[2]{\left( #1 \vee #2 \right)}
-
 \begin{frame}{命題邏輯}
     命題邏輯研究句子之間的關係。
 
     \begin{description}
-        \item[蘊涵] $\wi\wph\wps$ 是推理的核心
-        \item[否定] $\wn\wph$
-        \item[等價] $\wb\wph\wps$ 用來定義新符號
-        \item[且] $\wa\wph\wps$
-        \item[或] $\wo\wph\wps$
+        \item[蘊涵] $\left( \φ \to \ψ \right)$ 是推理的核心
+        \item[否定] $\neg\φ$
+        \item[等價] $\left( \φ \to \ψ \right)$ 用來定義新符號
+        \item[且] $\left( \φ \wedge \ψ \right)$
+        \item[或] $\left( \φ \vee \ψ \right)$
     \end{description}
 \end{frame}
-
-\newcommand{\aIIi}[3]{\wi{\wi{#1}{#2}}{\wi{#1}{#3}}}
-
-\newcommand{\axI}[2]{\wi{#1}{\wi{#2}{#1}}}
-\newcommand{\axII}[3]{\wi{\wi{#1}{\wi{#2}{#3}}}{\aIIi{#1}{#2}{#3}}}
-\newcommand{\axIII}[2]{\wi{\wi{\wn#1}{\wn#2}}{\wi{#2}{#1}}}
 
 \begin{frame}{\href
     {https://zh.wikipedia.org/wiki/\%E6\%89\%AC\%C2\%B7\%E6\%AD\%A6\%E5\%8D\%A1\%E8\%B0\%A2\%E7\%BB\%B4\%E5\%A5\%87}
     {Łukasiewicz} 的公理系統
 }
-    \[ \axI\wph\wps      \tag{\mmlink{ax-1}} \]
-    \[ \axII\wph\wps\wch \tag{\mmlink{ax-2}} \]
-    \[ \axIII\wph\wps    \tag{\mmlink{ax-3}} \]
-    \[ \wph \ \mbox{和}\ \wi\wph\wps \ \mbox{能證明}\ \wps \tag{\mmlink{ax-mp}} \]
+    \[ \tag{\mmlink{ax-1}} \left( \φ \to \left( \ψ \to \φ \right) \right) \]
+    \[ \tag{\mmlink{ax-2}} \left(
+        \left( \φ \to \left( \ψ \to \χ \right) \right) \to
+        \left( \left( \φ \to \ψ \right) \to \left( \φ \to \χ \right) \right)
+    \right) \]
+    \[ \tag{\mmlink{ax-3}} \left( \left( \neg\φ \to \neg\ψ \right) \to \left( \ψ \to \φ \right) \right) \]
+    \[ \tag{\mmlink{ax-mp}} \φ \ \mbox{和}\ \left( \φ \to \ψ \right) \ \mbox{能證明}\ \ψ \]
 \end{frame}
 
-\newcommand{\dfor}[2]{\wi{\wn#1}{#2}}
-\newcommand{\dfan}[2]{\wn\wi{#1}{\wn#2}}
-\newcommand{\dfbi}[2]{\dfan{\wi{#1}{#2}}{\wi{#2}{#1}}}
-
 \begin{frame}{定義其他邏輯符號}
-    $\wo\wph\wps$ 定義為 $\dfor\wph\wps$
+    $\left( \φ \vee \ψ \right)$ 定義為 $\left( \neg\φ \to \ψ \right)$
 
-    $\wa\wph\wps$ 定義為 $\dfan\wph\wps$
+    $\left( \φ \wedge \ψ \right)$ 定義為 $\neg\left( \φ \to \neg\ψ \right)$
 
-    $\wb\wph\wps$ 定義為 $\wa{\wi\wph\wps}{\wi\wps\wph}$
+    $\left( \φ \leftrightarrow \ψ \right)$ 定義為
+    $\left( \left( \φ \to \ψ \right) \wedge \left( \ψ \to \φ \right) \right)$
 \end{frame}
 
 \subsection{蘊涵}
@@ -99,28 +87,31 @@
     \begin{syntax}[\mmtarget{wi}]
         假說：
         \begin{align*}
-            \wff \wph \\
-            \wff \wps
+            \wff \φ \\
+            \wff \ψ
         \end{align*}
 
         斷言：
-        \[ \wff \wi\wph\wps \]
+        \[ \wff \left( \φ \to \ψ \right) \]
     \end{syntax}
 \end{frame}
 
 \begin{frame}{公理 1：蘊涵的簡化}
     \begin{axiom}[\mmtarget{ax-1}]
         斷言：
-        \[ \axI\wph\wps \]
+        \[ \left( \φ \to \left( \ψ \to \φ \right) \right) \]
     \end{axiom}
 
-    如果 $\wph$ 是真理，那麼加上任意前提 $\wps$ 都成立。
+    如果 $\φ$ 是真理，那麼加上任意前提 $\ψ$ 都成立。
 \end{frame}
 
 \begin{frame}{公理 2：蘊涵的分配律}
     \begin{axiom}[\mmtarget{ax-2}]
         斷言：
-        \[ \axII\wph\wps\wch \]
+        \[ \left(
+            \left( \φ \to \left( \ψ \to \χ \right) \right) \to
+            \left( \left( \φ \to \ψ \right) \to \left( \φ \to \χ \right) \right)
+        \right) \]
     \end{axiom}
 
     \href
@@ -133,22 +124,22 @@
 \begin{frame}{推論規則：肯定前件}
     \begin{axiom}[\mmtarget{ax-mp}]
         假說：
-        \[ \wph        \tag{min} \]
-        \[ \wi\wph\wps \tag{maj} \]
+        \[ \tag{min} \φ \]
+        \[ \tag{maj} \left( \φ \to \ψ \right) \]
 
         斷言：
-        \[ \wps \]
+        \[ \ψ \]
     \end{axiom}
 
-    這可以用來把定理 $\wi\wph\wps$ 的 $\wps$ 兌現出來。
+    這可以用來把定理 $\left( \φ \to \ψ \right)$ 的 $\ψ$ 兌現出來。
 \end{frame}
 
 \begin{frame}{定理、演繹、推論}
     要描述「若 $\sigma$ 則 $\tau$」有三種表示方法：
     \begin{description}
-        \item[定理] 能證明 $\wi\sigma\tau$
+        \item[定理] 能證明 $\left( \sigma \to \tau \right)$
         \item[推論] $\sigma$ 能證明 $\tau$
-        \item[演繹] $\wi\wph\sigma$ 能證明 $\wi\wph\tau$
+        \item[演繹] $\left( \φ \to \sigma \right)$ 能證明 $\left( \φ \to \tau \right)$
     \end{description}
 
     推論是最弱的形式，需要複雜的\mmhref{mmdeduction}{演繹定理}才能化為另外兩者。
@@ -162,21 +153,21 @@
 \begin{frame}{公理 1 的推論形式}
     \begin{theorem}[\mmtarget{a1i}]
         假說：
-        \[ \wph \tag{a1i.1} \]
+        \[ \tag{a1i.1} \φ \]
 
         斷言：
-        \[ \wi\wps\wph \]
+        \[ \left( \ψ \to \φ \right) \]
 
         \begin{mmproof}
             \begin{mmtable}{2em}{3em}
                 \statement{a1i.1}
-                    $\wph$
+                    $\φ$
                     \label{a1i:1}
                 \statement{\mmlink{ax-1}}
-                    $\axI\wph\wps$
+                    $\left( \φ \to \left( \ψ \to \φ \right) \right)$
                     \label{a1i:ax-1}
                 \statement[\ref{a1i:1}, \ref{a1i:ax-1}]{\mmlink{ax-mp}}
-                    $\wi\wps\wph$
+                    $\left( \ψ \to \φ \right)$
             \end{mmtable}
         \end{mmproof}
     \end{theorem}
@@ -184,24 +175,25 @@
 
 \begin{frame}{公理 2 的推論形式}
     \begin{theorem}[\mmtarget{a2i}]
-        \newcommand{\hyp}{\wi\wph{\wi\wps\wch}}
-
         假說：
-        \[ \hyp \tag{a2i.1} \]
+        \[ \tag{a2i.1} \left( \φ \to \left( \ψ \to \χ \right) \right) \]
 
         斷言：
-        \[ \aIIi\wph\wps\wch \]
+        \[ \left( \left( \φ \to \ψ \right) \to \left( \φ \to \χ \right) \right) \]
 
         \begin{mmproof}
             \begin{mmtable}{2em}{3em}
                 \statement{a2i.1}
-                    $\hyp$
+                    $\left( \φ \to \left( \ψ \to \χ \right) \right)$
                     \label{a2i:1}
                 \statement{\mmlink{ax-2}}
-                    $\axII\wph\wps\wch$
+                    $\left(
+                        \left( \φ \to \left( \ψ \to \χ \right) \right) \to
+                        \left( \left( \φ \to \ψ \right) \to \left( \φ \to \χ \right) \right)
+                    \right)$
                     \label{a2i:ax-2}
                 \statement[\ref{a2i:1}, \ref{a2i:ax-2}]{\mmlink{ax-mp}}
-                    $\aIIi\wph\wps\wch$
+                    $\left( \left( \φ \to \ψ \right) \to \left( \φ \to \χ \right) \right)$
             \end{mmtable}
         \end{mmproof}
     \end{theorem}
@@ -210,11 +202,11 @@
 \begin{frame}{肯定前件的演繹}
     \begin{theorem}[\mmtarget{mpd}]
         假說：
-        \[ \wi\wph\wps          \tag{mpd.1} \]
-        \[ \wi\wph{\wi\wps\wch} \tag{mpd.2} \]
+        \[ \tag{mpd.1} \left( \φ \to \ψ \right) \]
+        \[ \tag{mpd.2} \left( \φ \to \left( \ψ \to \χ \right) \right) \]
 
         斷言：
-        \[ \wi\wph\wch \]
+        \[ \left( \φ \to \χ \right) \]
     \end{theorem}
 
     這個演繹必須額外證明，因為它要用來證明三段論。
@@ -224,16 +216,16 @@
     \begin{mmproof}
         \begin{mmtable}{2em}{3em}
             \statement{mpd.1}
-                $\wi\wph\wps$
+                $\left( \φ \to \ψ \right)$
                 \label{mpd:1}
             \statement{mpd.2}
-                $\wi\wph{\wi\wps\wch}$
+                $\left( \φ \to \left( \ψ \to \χ \right) \right)$
                 \label{mpd:2}
             \statement[\ref{mpd:2}]{\mmlink{a2i}}
-                $\aIIi\wph\wps\wch$
+                $\left( \left( \φ \to \ψ \right) \to \left( \φ \to \χ \right) \right)$
                 \label{mpd:a2i}
             \statement[\ref{mpd:1}, \ref{mpd:a2i}]{\mmlink{ax-mp}}
-                $\wi\wph\wch$
+                $\left( \φ \to \χ \right)$
         \end{mmtable}
     \end{mmproof}
 \end{frame}
@@ -241,11 +233,11 @@
 \begin{frame}{三段論}
     \begin{theorem}[\mmtarget{syl}]
         假說：
-        \[ \wi\wph\wps \tag{syl.1} \]
-        \[ \wi\wps\wch \tag{syl.2} \]
+        \[ \tag{syl.1} \left( \φ \to \ψ \right) \]
+        \[ \tag{syl.2} \left( \ψ \to \χ \right) \]
 
         斷言：
-        \[ \wi\wph\wch \]
+        \[ \left( \φ \to \χ \right) \]
     \end{theorem}
 \end{frame}
 
@@ -253,16 +245,16 @@
     \begin{mmproof}
         \begin{mmtable}{2em}{3em}
             \statement{syl.1}
-                $\wi\wph\wps$
+                $\left( \φ \to \ψ \right)$
                 \label{syl:1}
             \statement{syl.2}
-                $\wi\wps\wch$
+                $\left( \ψ \to \χ \right)$
                 \label{syl:2}
             \statement[\ref{syl:2}]{\mmlink{a1i}}
-                $\wi\wph{\wi\wps\wch}$
+                $\left( \φ \to \left( \ψ \to \χ \right) \right)$
                 \label{syl:a1i}
             \statement[\ref{syl:1}, \ref{syl:a1i}]{\mmlink{mpd}}
-                $\wi\wph\wch$
+                $\left( \φ \to \χ \right)$
         \end{mmtable}
     \end{mmproof}
 \end{frame}
@@ -270,18 +262,18 @@
 \begin{frame}{同一律}
     \begin{theorem}[\mmtarget{id}]
         斷言：
-        \[ \wi\wph\wph \]
+        \[ \left( \φ \to \φ \right) \]
 
         \begin{mmproof}
             \begin{mmtable}{2em}{3em}
                 \statement{\mmlink{ax-1}}
-                    $\axI\wph\wph$
+                    $\left( \φ \to \left( \φ \to \φ \right) \right)$
                     \label{id:ax-1:1}
                 \statement{\mmlink{ax-1}}
-                    $\axI\wph{\wi\wph\wph}$
+                    $\left( \φ \to \left( \left( \φ \to \φ \right) \to \φ \right) \right)$
                     \label{id:ax-1:2}
                 \statement[\ref{id:ax-1:1}, \ref{id:ax-1:2}]{\mmlink{mpd}}
-                    $\wi\wph\wph$
+                    $\left( \φ \to \φ \right)$
             \end{mmtable}
         \end{mmproof}
     \end{theorem}
@@ -290,21 +282,21 @@
 \begin{frame}{公理 1 的演繹}
     \begin{theorem}[\mmtarget{a1d}]
         假說：
-        \[ \wi\wph\wps \tag{a1d.1} \]
+        \[ \tag{a1d.1} \left( \φ \to \ψ \right) \]
 
         斷言：
-        \[ \wi\wph{\wi\wch\wps} \]
+        \[ \left( \φ \to \left( \χ \to \ψ \right) \right) \]
 
         \begin{mmproof}
             \begin{mmtable}{2em}{4em}
                 \statement{a1d.1}
-                    $\wi\wph\wps$
+                    $\left( \φ \to \ψ \right)$
                     \label{a1d:1}
                 \statement{\mmlink{ax-1}}
-                    $\axI\wps\wch$
+                    $\left( \ψ \to \left( \χ \to \ψ \right) \right)$
                     \label{a1d:ax-1}
                 \statement[\ref{a1d:1}, \ref{a1d:ax-1}]{\mmlink{syl}}
-                    $\wi\wph{\wi\wch\wps}$
+                    $\left( \φ \to \left( \χ \to \ψ \right) \right)$
             \end{mmtable}
         \end{mmproof}
     \end{theorem}
@@ -314,45 +306,43 @@
 \begin{frame}{否定}
     \begin{syntax}
         假說：
-        \[ \wff \wph \]
+        \[ \wff \φ \]
 
         斷言：
-        \[ \wff \wn\wph \]
+        \[ \wff \neg\φ \]
     \end{syntax}
 \end{frame}
 
 \begin{frame}{公理 3：換位律}
     \begin{axiom}[\mmtarget{ax-3}]
         斷言：
-        \[ \axIII\wph\wps \]
+        \[ \left( \left( \neg\φ \to \neg\ψ \right) \to \left( \ψ \to \φ \right) \right) \]
     \end{axiom}
 
     \begin{itemize}
-        \item 為什麼不規定 $\wi{\wi\wph\wps}{\wi{\wn\wps}{\wn\wph}}$？
+        \item 為什麼不規定 $\left( \left( \φ \to \ψ \right) \to \left( \neg\ψ \to \neg\φ \right) \right)$？
         \item 公理 3 有沒有改變 $\to$ 的語義？
     \end{itemize}
 \end{frame}
 
 \begin{frame}{公理 3 的演繹}
     \begin{theorem}[\mmtarget{con4d}]
-        \newcommand{\hyp}{\wi\wph{\wi{\wn\wps}{\wn\wch}}}
-
         假說：
-        \[ \hyp \tag{con4d.1} \]
+        \[ \tag{con4d.1} \left( \φ \to \left( \neg\ψ \to \neg\χ \right) \right) \]
 
         斷言：
-        \[ \wi\wph{\wi\wch\wps} \]
+        \[ \left( \φ \to \left( \χ \to \ψ \right) \right) \]
 
         \begin{mmproof}
             \begin{mmtable}{2em}{4em}
                 \statement{con4d.1}
-                    $\hyp$
+                    $\left( \φ \to \left( \neg\ψ \to \neg\χ \right) \right)$
                     \label{con4d:1}
                 \statement{\mmlink{ax-3}}
-                    $\axIII\wps\wch$
+                    $\left( \left( \neg\ψ \to \neg\χ \right) \to \left( \χ \to \ψ \right) \right)$
                     \label{con4d:ax-3}
                 \statement[\ref{con4d:1}, \ref{con4d:ax-3}]{\mmlink{syl}}
-                    $\wi\wph{\wi\wch\wps}$
+                    $\left( \φ \to \left( \χ \to \ψ \right) \right)$
             \end{mmtable}
         \end{mmproof}
     \end{theorem}
@@ -361,21 +351,21 @@
 \begin{frame}{矛盾蘊涵任意事情，演繹形式}
     \begin{theorem}[\mmtarget{pm2.21d}]
         假說：
-        \[ \wi\wph{\wn\wps} \tag{pm2.21d.1} \]
+        \[ \tag{pm2.21d.1} \left( \φ \to \neg\ψ \right) \]
 
         斷言：
-        \[ \wi\wph{\wi\wps\wch} \]
+        \[ \left( \φ \to \left( \ψ \to \χ \right) \right) \]
 
         \begin{mmproof}
             \begin{mmtable}{1em}{5em}
                 \statement{pm2.21d.1}
-                    $\wi\wph{\wn\wps}$
+                    $\left( \φ \to \neg\ψ \right)$
                     \label{pm2.21d:1}
                 \statement[\ref{pm2.21d:1}]{\mmlink{a1d}}
-                    $\wi\wph{\wi{\wn\wch}{\wn\wps}}$
+                    $\left( \φ \to \left( \neg\χ \to \neg\ψ \right) \right)$
                     \label{pm2.21d:a1d}
                 \statement[\ref{pm2.21d:a1d}]{\mmlink{con4d}}
-                    $\wi\wph{\wi\wps\wch}$
+                    $\left( \φ \to \left( \ψ \to \χ \right) \right)$
             \end{mmtable}
         \end{mmproof}
     \end{theorem}
