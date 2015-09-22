@@ -93,7 +93,8 @@
 
 %%% Cross reference %%%
 \newcommand{\mmhref}[2]{\href{http://us.metamath.org/mpeuni/#1.html}{#2}}
-\newcommand{\mmtarget}[1]{\hypertarget{#1}{\mmhref{#1}{#1}}}
+\newcommand{\mmurl}[1]{\mmhref{#1}{#1}}
+\newcommand{\mmtarget}[1]{\hypertarget{#1}{\mmurl{#1}}}
 \newcommand{\mmlink}[1]{\hypersetup{linkcolor=structure.fg}\hyperlink{#1}{#1}}
 
 %%% Metamath proof %%%

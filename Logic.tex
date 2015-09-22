@@ -54,7 +54,7 @@
     \begin{description}
         \item[蘊涵] $\left( \φ \to \ψ \right)$ 是推理的核心
         \item[否定] $\neg\φ$
-        \item[等價] $\left( \φ \to \ψ \right)$ 用來定義新符號
+        \item[等價] $\left( \φ \leftrightarrow \ψ \right)$ 用來定義新符號
         \item[且] $\left( \φ \wedge \ψ \right)$
         \item[或] $\left( \φ \vee \ψ \right)$
     \end{description}
@@ -272,56 +272,38 @@
                 \statement{\mmlink{ax-1}}
                     $\left( \φ \to \left( \left( \φ \to \φ \right) \to \φ \right) \right)$
                     \label{id:ax-1:2}
-                \statement[\ref{id:ax-1.1}, \ref{id:ax-1.2}]{\mmlink{mpd}}
+                \statement[\ref{id:ax-1:1}, \ref{id:ax-1:2}]{\mmlink{mpd}}
                     $\left( \φ \to \φ \right)$
             \end{mmtable}
         \end{mmproof}
     \end{theorem}
 \end{frame}
 
-\begin{frame}{公理 1 的演繹}
-    \begin{theorem}[\mmtarget{a1d}]
+\begin{frame}
+    \setlength{\parskip}{1ex}
+
+    之後的定理，尤其是定理、演繹、推論的互化，我們不再一一證明。
+    
+    此處不證明的定理，會連結到 Metamath 官網。
+\end{frame}
+
+\begin{frame}{交換前提}
+    \begin{theorem}[\mmtarget{com12}]
         假說：
-        \[ \tag{a1d.1} \left( \φ \to \ψ \right) \]
+        \[ \left( \φ \to \left( \ψ \to \χ \right) \right) \]
 
         斷言：
-        \[ \left( \φ \to \left( \χ \to \ψ \right) \right) \]
-
-        \begin{mmproof}
-            \begin{mmtable}{2em}{4em}
-                \statement{a1d.1}
-                    $\left( \φ \to \ψ \right)$
-                    \label{a1d.1}
-                \statement{\mmlink{ax-1}}
-                    $\left( \ψ \to \left( \χ \to \ψ \right) \right)$
-                    \label{a1d:ax-1}
-                \statement[\ref{a1d.1}, \ref{a1d:ax-1}]{\mmlink{syl}}
-                    $\left( \φ \to \left( \χ \to \ψ \right) \right)$
-            \end{mmtable}
-        \end{mmproof}
+        \[ \left( \ψ \to \left( \φ \to \χ \right) \right) \]
     \end{theorem}
 \end{frame}
 
-\begin{frame}{縮併冗餘的前提}
-    \begin{theorem}[\mmtarget{pm2.43i}]
-        假說：
-        \[ \tag{pm2.43i.1} \left( \φ \to \left( \φ \to \ψ \right) \right) \]
-
+\begin{frame}{公理 2 的反命題}
+    \begin{theorem}[\mmtarget{pm2.86}]
         斷言：
-        \[ \left( \φ \to \ψ \right) \]
-
-        \begin{mmproof}
-            \begin{mmtable}{2em}{5em}
-                \statement{\mmlink{id}}
-                    $\left( \φ \to \φ \right)$
-                    \label{pm2.43i:id}
-                \statement{pm2.43i.1}
-                    $\left( \φ \to \left( \φ \to \ψ \right) \right)$
-                    \label{pm2.43i.1}
-                \statement[\ref{pm2.43i:id}, \ref{pm2.43i.1}]{\mmlink{mpd}}
-                    $\left( \φ \to \ψ \right)$
-            \end{mmtable}
-        \end{mmproof}
+        \[ \left(
+            \left( \left( \φ \to \ψ \right) \to \left( \φ \to \χ \right) \right) \to
+            \left( \φ \to \left( \ψ \to \χ \right) \right)
+        \right) \]
     \end{theorem}
 \end{frame}
 
@@ -348,29 +330,6 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{公理 3 的演繹}
-    \begin{theorem}[\mmtarget{con4d}]
-        假說：
-        \[ \tag{con4d.1} \left( \φ \to \left( \neg\ψ \to \neg\χ \right) \right) \]
-
-        斷言：
-        \[ \left( \φ \to \left( \χ \to \ψ \right) \right) \]
-
-        \begin{mmproof}
-            \begin{mmtable}{2em}{4em}
-                \statement{con4d.1}
-                    $\left( \φ \to \left( \neg\ψ \to \neg\χ \right) \right)$
-                    \label{con4d.1}
-                \statement{\mmlink{ax-3}}
-                    $\left( \left( \neg\ψ \to \neg\χ \right) \to \left( \χ \to \ψ \right) \right)$
-                    \label{con4d:ax-3}
-                \statement[\ref{con4d.1}, \ref{con4d:ax-3}]{\mmlink{syl}}
-                    $\left( \φ \to \left( \χ \to \ψ \right) \right)$
-            \end{mmtable}
-        \end{mmproof}
-    \end{theorem}
-\end{frame}
-
 \begin{frame}{矛盾蘊涵任意事情，演繹形式}
     \begin{theorem}[\mmtarget{pm2.21d}]
         假說：
@@ -384,28 +343,11 @@
                 \statement{pm2.21d.1}
                     $\left( \φ \to \neg\ψ \right)$
                     \label{pm2.21d.1}
-                \statement[\ref{pm2.21d.1}]{\mmlink{a1d}}
+                \statement[\ref{pm2.21d.1}]{\mmurl{a1d}}
                     $\left( \φ \to \left( \neg\χ \to \neg\ψ \right) \right)$
                     \label{pm2.21d:a1d}
-                \statement[\ref{pm2.21d:a1d}]{\mmlink{con4d}}
+                \statement[\ref{pm2.21d:a1d}]{\mmurl{con4d}}
                     $\left( \φ \to \left( \ψ \to \χ \right) \right)$
-            \end{mmtable}
-        \end{mmproof}
-    \end{theorem}
-\end{frame}
-
-\begin{frame}{矛盾蘊涵任意事情}
-    \begin{theorem}[\mmtarget{pm2.21}]
-        斷言：
-        \[ \left( \neg\φ \to \left( \φ \to \ψ \right) \right) \]
-
-        \begin{mmproof}
-            \begin{mmtable}{1em}{5em}
-                \statement{id}
-                    $\left( \neg\φ \to \neg\φ \right)$
-                    \label{pm2.21:id}
-                \statement[\ref{pm2.21:id}]{\mmlink{pm2.21d}}
-                    $\left( \neg\φ \to \left( \φ \to \ψ \right) \right)$
             \end{mmtable}
         \end{mmproof}
     \end{theorem}
@@ -418,7 +360,7 @@
 
         \begin{mmproof}
             \begin{mmtable}{1em}{5em}
-                \statement{\mmlink{pm2.21}}
+                \statement{\mmurl{pm2.21}}
                     $\left( \neg\φ \to \left( \φ \to \neg \left( \neg\φ \to \φ \right) \right) \right)$
                     \label{pm2.18:pm2.21}
                 \statement[\ref{pm2.18:pm2.21}]{\mmlink{a2i}}
@@ -427,37 +369,14 @@
                         \left( \neg\φ \to \neg \left( \neg\φ \to \φ \right) \right)
                     \right)$
                     \label{pm2.18:a2i}
-                \statement[\ref{pm2.18:a2i}]{\mmlink{con4d}}
+                \statement[\ref{pm2.18:a2i}]{\mmurl{con4d}}
                     $\left(
                         \left( \neg\φ \to \φ \right) \to
                         \left( \left( \neg\φ \to \φ \right) \to \φ \right)
                     \right)$
                     \label{pm2.18:con4d}
-                \statement[\ref{pm2.18:con4d}]{\mmlink{pm2.43i}}
+                \statement[\ref{pm2.18:con4d}]{\mmurl{pm2.43i}}
                     $\left( \left( \neg\φ \to \φ \right) \to \φ \right)$
-            \end{mmtable}
-        \end{mmproof}
-    \end{theorem}
-\end{frame}
-
-\begin{frame}{反證法，演繹形式}
-    \begin{theorem}[\mmtarget{pm2.18d}]
-        假說：
-        \[ \tag{pm2.18d.1} \left( \φ \to \left( \neg\ψ \to \ψ \right) \right) \]
-
-        斷言：
-        \[ \left( \φ \to \ψ \right) \]
-
-        \begin{mmproof}
-            \begin{mmtable}{2em}{5em}
-                \statement{pm2.18d.1}
-                    $\left( \φ \to \left( \neg\ψ \to \ψ \right) \right)$
-                    \label{pm2.18d.1}
-                \statement{\mmlink{pm2.18}}
-                    $\left( \left( \neg\ψ \to \ψ \right) \to \ψ \right)$
-                    \label{pm2.18d:pm2.18}
-                \statement[\ref{pm2.18d.1}, \ref{pm2.18d:pm2.18}]{\mmlink{syl}}
-                    $\left( \φ \to \ψ \right)$
             \end{mmtable}
         \end{mmproof}
     \end{theorem}
@@ -470,10 +389,10 @@
 
         \begin{mmproof}
             \begin{mmtable}{1em}{5em}
-                \statement{\mmlink{pm2.21}}
+                \statement{\mmurl{pm2.21}}
                     $\left( \neg\neg\φ \to \left( \neg\φ \to \φ \right) \right)$
                     \label{notnot2:pm2.21}
-                \statement[\ref{notnot2:pm2.21}]{\mmlink{pm2.18d}}
+                \statement[\ref{notnot2:pm2.21}]{\mmurl{pm2.18d}}
                     $\left( \neg\neg\φ \to \φ \right)$
             \end{mmtable}
         \end{mmproof}
@@ -481,10 +400,85 @@
 \end{frame}
 
 \begin{frame}
+    \setlength{\parskip}{1ex}
+
     以上我們都只是把否定 ($\neg$) 拿掉。
 
     我們有辦法給句子加上否定嗎？
 
     %TODO con2d mt2d nsyl3 con2i notnot1
+\end{frame}
+
+\begin{frame}{否定句在後的換位}
+    \begin{theorem}[\mmtarget{con2d}]
+        假說：
+        \[ \tag{con2d.1} \left( \φ \to \left( \ψ \to \neg\χ \right) \right) \]
+
+        斷言：
+        \[ \left( \φ \to \left( \χ \to \neg\ψ \right) \right) \]
+
+        \begin{mmproof}
+            \begin{mmtable}{2em}{4em}
+                \statement{\mmlink{notnot2}}
+                    $\left( \neg\neg\ψ \to \ψ \right)$
+                    \label{con2d:notnot2}
+                \statement{con2d.1}
+                    $\left( \φ \to \left( \ψ \to \neg\χ \right) \right)$
+                    \label{con2d.1}
+                \statement{\mmurl{syl5}}
+                    $\left( \φ \to \left( \neg\neg\ψ \to \neg\χ \right) \right)$
+                    \label{con2d:syl5}
+                \statement{\mmurl{con4d}}
+                    $\left( \φ \to \left( \χ \to \neg\ψ \right) \right)$
+            \end{mmtable}
+        \end{mmproof}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{雙重否定介入}
+    \begin{theorem}[\mmtarget{notnot1}]
+        斷言
+        \[ \left( \φ \to \neg\neg\φ \right) \]
+
+        \begin{mmproof}
+            \begin{mmtable}{1em}{3em}
+                \statement{\mmlink{id}}
+                    $\left( \neg\φ \to \neg\φ \right)$
+                    \label{notnot1:id}
+                \statement[\ref{notnot1:id}]{\mmurl{con2i}}
+                    $\left( \φ \to \neg\neg\φ \right)$
+            \end{mmtable}
+        \end{mmproof}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{定義其他邏輯符號}
+    $\left( \φ \vee \ψ \right)$ 應該定義為 $\left( \neg\φ \to \ψ \right)$
+    \begin{description}
+        \item[\mmurl{pm2.24}] $\left( \φ \to \left( \neg\φ \to \ψ \right) \right)$
+        \item[\mmlink{ax-1}]  $\left( \ψ \to \left( \neg\φ \to \ψ \right) \right)$
+    \end{description}
+
+    $\left( \φ \wedge \ψ \right)$ 應該定義為 $\neg \left( \φ \to \neg\ψ \right)$
+    \begin{description}
+        \item[\mmurl{pm3.2im}] $\left( \φ \to \left( \ψ \to
+            \neg \left( \φ \to \neg\ψ \right)
+            \right) \right)$
+        \item[\mmurl{impi}] $\left( \φ \to \left( \ψ \to \χ \right) \right)$
+            能證明 $\left( \neg \left( \φ \to \neg\ψ \right) \to \χ \right)$
+            \begin{description}
+                \item[\mmlink{ax-1}] $\left( \φ \to \left( \ψ \to \φ \right) \right)$
+                \item[\mmlink{id}, \mmlink{a1i}] $\left( \φ \to \left( \ψ \to \ψ \right) \right)$
+            \end{description}
+    \end{description}
+\end{frame}
+
+\begin{frame}{Peirce 定理}
+    \begin{theorem}[\mmtarget{peirce}]
+        斷言
+        \[ \left( \left( \left( \φ \to \ψ \right) \to \φ \right) \to \φ \right) \]
+    \end{theorem}
+
+    由此可見，公理 3 增強了 $\to$ 的語義。
 \end{frame}
 \end{document}
