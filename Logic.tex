@@ -405,8 +405,6 @@
     以上我們都只是把否定 ($\neg$) 拿掉。
 
     我們有辦法給句子加上否定嗎？
-
-    %TODO con2d mt2d nsyl3 con2i notnot1
 \end{frame}
 
 \begin{frame}{否定句在後的換位}
@@ -468,7 +466,7 @@
             能證明 $\left( \neg \left( \φ \to \neg\ψ \right) \to \χ \right)$
             \begin{description}
                 \item[\mmlink{ax-1}] $\left( \φ \to \left( \ψ \to \φ \right) \right)$
-                \item[\mmlink{id}, \mmlink{a1i}] $\left( \φ \to \left( \ψ \to \ψ \right) \right)$
+                \item[\mmurl{idd}]   $\left( \φ \to \left( \ψ \to \ψ \right) \right)$
             \end{description}
     \end{description}
 \end{frame}
@@ -480,5 +478,228 @@
     \end{theorem}
 
     由此可見，公理 3 增強了 $\to$ 的語義。
+\end{frame}
+
+\subsection{同義}
+\newcommand{\φtoψ}{\left( \φ \to \ψ \right)}
+\newcommand{\ψtoφ}{\left( \ψ \to \φ \right)}
+\newcommand{\φiffψ}{\left( \φ \leftrightarrow \ψ \right)}
+\newcommand{\φdfbiψ}{\neg \left( \φtoψ \to \neg\ψtoφ \right)}
+
+\begin{frame}{雙條件句}
+    \begin{syntax}[\mmtarget{wb}]
+        假說：
+        \begin{align*}
+            \wff \φ \\
+            \wff \ψ
+        \end{align*}
+
+        斷言：
+        \[ \wff \φiffψ \]
+    \end{syntax}
+\end{frame}
+
+\begin{frame}{定義的藝術}
+    我們希望把
+    \begin{equation} \label{eq:wb}
+        \φiffψ
+    \end{equation}
+
+    定義為
+    \begin{equation} \label{eq:df-bi}
+        \φdfbiψ
+    \end{equation}
+
+    因此我們把 \eqref{eq:wb} 代入 \eqref{eq:df-bi} 的 $\φ$，把 \eqref{eq:df-bi} 代入 \eqref{eq:df-bi} 的 $\ψ$。
+\end{frame}
+
+\begin{frame}{雙條件句的定義}
+    \begin{definition}[\mmtarget{df-bi}]
+        斷言：
+        \begin{align*}
+        &   \neg \left( \left( \φiffψ \to \φdfbiψ \right) \to \right.\\
+        &   \left. \neg \left( \φdfbiψ \to \φiffψ \right) \right)
+        \end{align*}
+    \end{definition}
+
+    \setlength{\parskip}{1ex}
+
+    以後我們就可以用 $\leftrightarrow$ 來定義新符號了。
+
+    這定義實在太長，因此我們在之後的證明中縮寫。
+\end{frame}
+
+\begin{frame}{同義蘊涵蘊涵}
+    \begin{theorem}[\mmtarget{bi1}]
+        斷言：
+        \[ \left( \φiffψ \to \φtoψ \right) \]
+
+        \begin{mmproof}
+            \begin{mmtable}{2em}{4em}
+                \statement{\mmlink{df-bi}}
+                    定義 $\φiffψ$
+                    \label{bi1:df-bi}
+                \statement{\mmurl{simplim}}
+                    $
+                        \hypersetup{linkcolor=blue}
+                        \left( \ref{bi1:df-bi} \to \ref{bi1:ax-mp} \right)
+                    $
+                    \label{bi1:simplim:1}
+                \statement[\ref{bi1:df-bi}, \ref{bi1:simplim:1}]{\mmlink{ax-mp}}
+                    $\left( \φiffψ \to \φdfbiψ \right)$
+                    \label{bi1:ax-mp}
+                \statement{\mmurl{simplim}}
+                    $\left( \φdfbiψ \to \φtoψ \right)$
+                    \label{bi1:simplim:2}
+                \statement[\ref{bi1:ax-mp}, \ref{bi1:simplim:2}]{\mmlink{syl}}
+                    $\left( \φiffψ \to \φtoψ \right)$
+            \end{mmtable}
+        \end{mmproof}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{雙向蘊涵化為雙條件句}
+    \begin{theorem}[\mmtarget{bi3}]
+        斷言：
+        \[ \left( \φtoψ \to \left( \ψtoφ \to \φiffψ \right) \right) \]
+
+        \begin{mmproof}
+            \begin{mmtable}{2em}{4em}
+                \statement{\mmlink{df-bi}}
+                    定義 $\φiffψ$
+                    \label{bi3:df-bi}
+                \statement{\mmurl{simprim}}
+                    $
+                        \hypersetup{linkcolor=blue}
+                        \left( \ref{bi3:df-bi} \to \ref{bi3:ax-mp} \right)
+                    $
+                    \label{bi3:simprim}
+                \statement[\ref{bi3:df-bi}, \ref{bi3:simprim}]{\mmlink{ax-mp}}
+                    $\left( \φdfbiψ \to \φiffψ \right)$
+                    \label{bi3:ax-mp}
+                \statement[\ref{bi3:ax-mp}]{\mmurl{expi}}
+                    $\left( \φtoψ \to \left( \ψtoφ \to \φiffψ \right) \right)$
+            \end{mmtable}
+        \end{mmproof}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{雙條件句的定義的簡寫}
+    \begin{theorem}[\mmurl{dfbi1}]
+        斷言：
+        \[ \left( \φiffψ \leftrightarrow \φdfbiψ \right) \]
+
+        \begin{mmproof}
+            \begin{mmtable}{2em}{4em}
+                \statement{\mmlink{df-bi}}
+                    定義 $\φiffψ$
+                    \label{dfbi1:df-bi}
+                \statement{\mmurl{simplim}}
+                    $
+                        \hypersetup{linkcolor=blue}
+                        \left( \ref{dfbi1:df-bi} \to \ref{dfbi1:ax-mp} \right)
+                    $
+                    \label{dfbi1:simplim:1}
+                \statement[\ref{dfbi1:df-bi}, \ref{dfbi1:simplim:1}]{\mmlink{ax-mp}}
+                    $\left( \φiffψ \to \φdfbiψ \right)$
+                    \label{dfbi1:ax-mp}
+                \statement{\mmlink{bi3}}
+                    $\left( \φtoψ \to \left( \ψtoφ \to \φiffψ \right) \right)$
+                    \label{dfbi1:bi3}
+                \statement{\mmurl{impi}}
+                    $\left( \φdfbiψ \to \φiffψ \right)$
+                    \label{dfbi1:impi}
+                \statement[\ref{dfbi1:ax-mp}, \ref{dfbi1:impi}]{\mmurl{impbii}}
+                    $\left( \φiffψ \leftrightarrow \φdfbiψ \right)$
+            \end{mmtable}
+        \end{mmproof}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{把前件換成它的定義}
+    \begin{theorem}[\mmurl{sylbi}]
+        假說：
+        \[ \tag{sylbi.1} \left( \φ \leftrightarrow \ψ \right) \]
+        \[ \tag{sylbi.2} \left( \ψ \to \χ \right) \]
+
+        斷言：
+        \[ \left( \φ \to \χ \right) \]
+
+        \begin{mmproof}
+            \begin{mmtable}{2em}{4em}
+                \statement{sylbi.1}
+                    $\left( \φ \leftrightarrow \ψ \right)$
+                    \label{sylbi.1}
+                \statement[\ref{sylbi.1}]{\mmurl{biimpi}}
+                    $\left( \φ \to \ψ \right)$
+                    \label{sylbi:biimpi}
+                \statement{sylbi.2}
+                    $\left( \ψ \to \χ \right)$
+                    \label{sylbi.2}
+                \statement[\ref{sylbi:biimpi}, \ref{sylbi.2}]{\mmlink{syl}}
+                    $\left( \φ \to \χ \right)$
+            \end{mmtable}
+        \end{mmproof}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{同義蘊涵反向蘊涵}
+    \begin{theorem}[\mmurl{bi2}]
+        斷言：
+        \[ \left( \φiffψ \to \ψtoφ \right) \]
+
+        \begin{mmproof}
+            \begin{mmtable}{2em}{4em}
+                \statement{\mmlink{dfbi1}}
+                    $\left( \φiffψ \leftrightarrow \φdfbiψ \right)$
+                    \label{bi2:dfbi1}
+                \statement{\mmurl{simprim}}
+                    $\left( \φdfbiψ \to \φiffψ \right)$
+                    \label{bi2:simprim}
+                \statement[\ref{bi2:dfbi1}, \ref{bi2:simprim}]{\mmlink{sylbi}}
+                    $\left( \φiffψ \to \ψtoφ \right)$
+            \end{mmtable}
+        \end{mmproof}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{雙條件句有交換律，單向}
+    \begin{theorem}[\mmurl{bicom1}]
+        斷言：
+        \[ \left( \φiffψ \to \left( \ψ \leftrightarrow \φ \right) \right) \]
+
+        \begin{mmproof}
+            \begin{mmtable}{2em}{4em}
+                \statement{\mmlink{bi2}}
+                    $\left( \φiffψ \to \ψtoφ \right)$
+                    \label{bicom1:bi2}
+                \statement{\mmlink{bi1}}
+                    $\left( \φiffψ \to \φtoψ \right)$
+                    \label{bicom1:bi1}
+                \statement[\ref{bicom1:bi2}, \ref{bicom1:bi1}]{\mmurl{impbid}}
+                    $\left( \φiffψ \to \left( \ψ \leftrightarrow \φ \right) \right)$
+            \end{mmtable}
+        \end{mmproof}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{雙條件句有交換律，雙向}
+    \begin{theorem}[\mmurl{bicom}]
+        斷言：
+        \[ \left( \φiffψ \leftrightarrow \left( \ψ \leftrightarrow \φ \right) \right) \]
+
+        \begin{mmproof}
+            \begin{mmtable}{2em}{4em}
+                \statement{\mmlink{bicom1}}
+                    $\left( \φiffψ \to \left( \ψ \leftrightarrow \φ \right) \right)$
+                    \label{bicom:bicom1:1}
+                \statement{\mmlink{bicom1}}
+                    $\left( \left( \ψ \leftrightarrow \φ \right) \to \φiffψ \right)$
+                    \label{bicom:bicom1:2}
+                \statement[\ref{bicom:bicom1:1}, \ref{bicom:bicom1:2}]{\mmurl{impbii}}
+                    $\left( \φiffψ \leftrightarrow \left( \ψ \leftrightarrow \φ \right) \right)$
+            \end{mmtable}
+        \end{mmproof}
+    \end{theorem}
 \end{frame}
 \end{document}
